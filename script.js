@@ -8,6 +8,16 @@ async function lerArquivoCSV() {
     }
     const csvText = await response.text();
     const data = d3.csvParse(csvText);
+
+    // Obtendo a data de atualização do cabeçalho HTTP
+    const lastModified = response.headers.get('last-modified');
+    let timestamp = document.getElementById("timestamp")
+    if (lastModified) {
+      timestamp.innerText('Data e hora de atualização: '+ lastModified);
+    } else {
+      console.log('Cabeçalho "last-modified" não encontrado.');
+    }
+
     dadosPlanilha = data;
     preencherTabela(dadosPlanilha);
   } catch (error) {
