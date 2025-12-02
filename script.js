@@ -2,7 +2,7 @@ let dadosPlanilha = [];
 
 async function lerArquivoCSV() {
   try {
-    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vR5-DLqVxlpyQk87B7JkhV-dpPMlB20nAKHmWL2SPKVzLD9HB5S4e9wzmT0HdgWzQ/pub?gid=2110176679&single=true&output=csv");
+    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vS6f10KYx2Z5eF4DnLBzNDAZCi9B2m2WFPjgQDtGkqqLQcNYRcgN_rxLEIztUNdcpb7UjjZS3HA9icP/pub?gid=2110176679&single=true&output=csv");
     if (!response.ok) {
       throw new Error("Não foi possível carregar o arquivo CSV.");
     }
