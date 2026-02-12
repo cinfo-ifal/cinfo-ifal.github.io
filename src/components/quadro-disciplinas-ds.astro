@@ -1,0 +1,203 @@
+---
+import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+const aulas = await getCollection("aulas");
+const BASE_URL = import.meta.env.BASE_URL;
+
+const diasDaSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
+
+interface Aula {
+    disciplina: string;
+    professor: string;
+    turma: string;
+    grupo: string;
+    inicio: string;
+    termino: string;
+}
+---
+
+<div class="mt-10 flex-col">
+    <ul class="mb-5 grid grid-cols-2 sm:grid-cols-4 lg:flex gap-4">
+        {
+            diasDaSemana?.map((dia) => {
+                return (
+                    <li class="text-center text-gray-800 dark:text-gray-300">
+                        <button
+                            type="button"
+                            data-button={dia.toLowerCase()}
+                            id={`nav-botao-dia-${dia.toLowerCase()}`}
+                            class="w-full nav-botoes-dia p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow hover:bg-gray-100 dark:hover:bg-gray-700 font-medium block rounded-lg data-[page]:bg-blue-700 data-[page]:text-white dark:data-[page]:bg-blue-600"
+                        >
+                            {dia.toUpperCase()}
+                        </button>
+                    </li>
+                );
+            })
+        }
+    </ul>
+    <div>
+        {
+            aulas.map((dia) => (
+                <div
+                    id={`quadro-horario-dia-${dia.id}`}
+                    class="quadro-horario-dia relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-200 dark:border-gray-700 hidden"
+                >
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-800 dark:text-gray-300">
+                        <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-900">
+                            {dia.id.toUpperCase()}
+                        </caption>
+                        <thead class="text-xs text-gray-800 uppercase text-center dark:text-gray-300 border-y border-gray-200 dark:border-gray-700">
+                            <tr>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Disciplina
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Professor
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    turma
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Grupo
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Horário
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dia.data?.map(async (aula: Aula) => {
+                                const disciplina = await getEntry(
+                                    "disciplinas",
+                                    aula.disciplina
+                                );
+                                const professor = await getEntry(
+                                    "professores",
+                                    aula.professor
+                                );
+
+                                return (
+                                    <tr class="border-b last:border-none border-gray-200 dark:border-gray-700">
+                                        <td
+                                            scope="row"
+                                            class="px-6 py-4 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800 text-center"
+                                        >
+                                            <a
+                                                href={`${BASE_URL}disciplinas/${disciplina?.slug}`}
+                                                class="text-blue-600 dark:text-blue-400 hover:underline"
+                                            >
+                                                {disciplina?.data?.titulo}
+                                            </a>
+                                        </td>
+                                        <td
+                                            scope="row"
+                                            class="px-6 py-4 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800 text-center"
+                                        >
+                                            {professor?.data?.nome ? (
+                                                <a
+                                                    href={`${BASE_URL}professores/${professor?.slug}`}
+                                                    class="text-blue-600 dark:text-blue-400 hover:underline"
+                                                >
+                                                    {professor?.data?.nome}
+                                                </a>
+                                            ) : (
+                                                "Não informado"
+                                            )}
+                                        </td>
+                                        <td
+                                            scope="row"
+                                            class="px-6 py-4 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800 text-center"
+                                        >
+                                            {aula?.turma}
+                                        </td>
+                                        <td
+                                            scope="row"
+                                            class="px-6 py-4 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800 text-center"
+                                        >
+                                            {aula?.grupo}
+                                        </td>
+                                        <td
+                                            scope="row"
+                                            class="px-6 py-4 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800 text-center"
+                                        >
+                                            {aula?.inicio} - {aula?.termino}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<script>
+    const NAV_BOTOES = document.querySelectorAll(".nav-botoes-dia")!;
+    const QUADRO_HORARIOS = document.querySelectorAll(".quadro-horario-dia")!;
+
+    function lidar_com_carregamento_inicial() {
+        const NAV_LINK_PERIODO_1 = document.getElementById(
+            "nav-botao-dia-segunda"
+        )!;
+        const QUADRO_HORARIO_PERIODO_1 = document.getElementById(
+            "quadro-horario-dia-segunda"
+        )!;
+        add_data_page_para_nav_link(NAV_LINK_PERIODO_1);
+        mostrar_quadro_horario(QUADRO_HORARIO_PERIODO_1);
+    }
+
+    function remover_data_page_anterior() {
+        NAV_BOTOES.forEach((navBotao) => navBotao.removeAttribute("data-page"));
+    }
+
+    function add_data_page_para_nav_link(navBotao: HTMLElement) {
+        navBotao.setAttribute("data-page", "true");
+    }
+
+    function esconder_todos_quadro_horario() {
+        QUADRO_HORARIOS.forEach((quadroHorario) =>
+            quadroHorario.classList.add("hidden")
+        );
+    }
+
+    function mostrar_quadro_horario(quadroHorario: HTMLElement) {
+        quadroHorario.classList.remove("hidden");
+    }
+
+    window.addEventListener("load", lidar_com_carregamento_inicial);
+
+    NAV_BOTOES.forEach((navBotao) => {
+        navBotao.addEventListener("click", function (event) {
+            const botao = event.currentTarget as HTMLElement;
+            const dia = botao.getAttribute("data-button");
+
+            remover_data_page_anterior();
+            add_data_page_para_nav_link(botao);
+
+            const quadro = document.getElementById(
+                `quadro-horario-dia-${dia}`
+            )!;
+            esconder_todos_quadro_horario();
+            mostrar_quadro_horario(quadro);
+            quadro.focus();
+        });
+    });
+</script>

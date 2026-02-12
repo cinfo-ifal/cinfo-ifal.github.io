@@ -1,0 +1,108 @@
+---
+import Container from "./container.astro";
+import Link from "./link.astro";
+
+import facebook from "../assets/facebook.svg?raw";
+import instagram from "../assets/instagram.svg?raw";
+import youtube from "../assets/youtube.svg?raw";
+
+import { linksRodape } from "../content/links/links-rodape";
+ 
+export const linksRedes = [
+    {
+        nome: "Facebook",
+        url: "https://www.facebook.com/cinfoifal",
+        icone: facebook,
+    },
+    {
+        nome: "Instagram",
+        url: "https://www.instagram.com/cinfoifal/",
+        icone: instagram,
+    },
+    {
+        nome: "Youtube",
+        url: "https://www.youtube.com/@coordenacaodeinformatica-c4303",
+        icone: youtube,
+    }
+]
+---
+
+<footer
+    class="py-24 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700"
+>
+    <Container>
+        <div class="flex flex-col gap-10 justify-center">
+            <div class="md:col-span-3">
+                <ul
+                    class="mx-auto pb-10 border-b-2 border-gray-200 dark:border-gray-700 flex items-center justify-center gap-9"
+                >
+                    {
+                        linksRedes.map((link) => {
+                            return (
+                                <li>
+                                    <a
+                                        href={link.url}
+                                        target="_blank"
+                                        class="text-gray-600 dark:text-gray-400 flex flex-col justify-center items-center gap-1 hover:text-gray-900 hover:dark:text-white"
+                                        title={`Ir para a página do IFAL no ${link.nome}`}
+                                    >
+                                        <Fragment set:html={link.icone} />
+                                        <span class="text-sm">{link.nome}</span>
+                                    </a>
+                                </li>
+                            );
+                        })
+                    }
+                </ul>
+            </div>
+
+            <div
+                class="p-9 flex flex-col flex-wrap lg:flex-nowrap md:flex-row gap-9 justify-between leading-8"
+            >
+                <div class="w-full text-center lg:text-left lg:w-auto">
+                    <p class="mb-2 text-gray-800 dark:text-white text-xl">
+                        Contatos
+                    </p>
+                    <div class="mb-3">
+                        <p class="mb-2 text-gray-800 dark:text-white">
+                            Desenvolvimento de sistemas
+                        </p>
+                        <ul class="text-gray-500 dark:text-gray-400">
+                            <li>Telefone: (82) 2126-7043</li>
+                            <li>Email: coord.info.maceio@ifal.edu.br</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p class="mb-2 text-gray-800 dark:text-white">
+                            Sistemas de Informação
+                        </p>
+                        <ul class="text-gray-500 dark:text-gray-400">
+                            <li>Telefone: (82) 2126-7027</li>
+                            <li>Email: bsi.maceio@ifal.edu.br</li>
+                        </ul>
+                    </div>
+                </div>
+
+                {
+                    linksRodape.map((groupo) => {
+                        return (
+                            <div class="text-center md:text-left">
+                                <p class="mb-2 text-gray-800 dark:text-white text-xl">
+                                    {groupo.nomeGrupo}
+                                </p>
+                                <ul class="text-gray-600 dark:text-gray-400">
+                                    {groupo.links.map((link) => (
+                                        <li>
+                                            <Link {...link} />
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </Container>
+</footer>

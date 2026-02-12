@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import LayoutPage from "../../../layouts/layout-page.astro";
+import Container from "../../../components/container.astro";
+import CartaoNoticiaPrincipal from "../../../components/cartao-noticia-principal.astro";
+
+const noticias = await getCollection("noticias");
+---
+
+<LayoutPage title="Notícias">
+    <Container>
+        <ul class="grid md:grid-cols-3 gap-5">
+            {
+                noticias.map((noticia) => (
+                    <CartaoNoticiaPrincipal
+                        slug={noticia.slug}
+                        descricao={noticia.data.descricao}
+                        foto={noticia.data.foto}
+                        titulo={noticia.data.titulo}
+                    />
+                ))
+            }
+        </ul>
+    </Container>
+</LayoutPage>

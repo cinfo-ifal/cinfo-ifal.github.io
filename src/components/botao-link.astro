@@ -1,0 +1,18 @@
+---
+interface Props {
+    href: string;
+    target?: string;
+    titulo?: string;
+}
+
+const { href, titulo } = Astro.props;
+const BASE_URL = import.meta.env.BASE_URL;
+---
+
+<a
+    href={`${BASE_URL}${href}`}
+    class="w-fit mt-auto inline-flex text-nowrap gap-2 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800"
+    title={titulo}
+>
+    <slot />
+</a>

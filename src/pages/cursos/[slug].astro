@@ -1,0 +1,107 @@
+---
+import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
+import QuadroDisciplinasSi from "../../components/quadro-disciplinas-si.astro";
+import QuadroDisciplinasDs from "../../components/quadro-disciplinas-ds.astro";
+import LayoutPage from "../../layouts/layout-page.astro";
+import Container from "../../components/container.astro";
+
+export async function getStaticPaths() {
+    const cursos = await getCollection("cursos");
+    return (
+        cursos.map((curso) => ({
+            params: {
+                slug: curso.slug,
+            },
+            props: {
+                curso,
+            },
+        })) || []
+    );
+}
+
+const BASE_URL = import.meta.env.BASE_URL;
+
+const { curso } = Astro.props;
+const { Content } = await curso.render();
+
+const coordenador = await getEntry("professores", curso.data.coordenador);
+
+console.log(curso.data.titulo);
+---
+
+<LayoutPage title={curso.data.titulo}>
+    <Container>
+        <div class="p3 md:p-5 rounded-lg overflow-hidden relative">
+            <div class="w-full">
+                <img
+                    class="w-full h-full object-cover absolute top-0 left-0 z-[-1]"
+                    src={`${BASE_URL}images/cursos/${curso.data.foto}`}
+                    alt=""
+                />
+            </div>
+            <div class="p-3 rounded text-lg md:p-5">
+                <p class="text-gray-200">
+                    <strong class="text-white">Nível: </strong>
+                    {curso.data.nivel}
+                </p>
+                <p class="text-gray-200">
+                    <strong class="text-white">Modalidade: </strong>
+                    {curso.data.modalidade}
+                </p>
+                <p class="text-gray-200">
+                    <strong class="text-white">Duração: </strong>
+                    {curso.data.duracao}
+                </p>
+                <p class="text-gray-200">
+                    <strong class="text-white">Turno: </strong>
+                    {curso.data.turno}
+                </p>
+                <p class="text-gray-200">
+                    <strong class="text-white">Carga Horária: </strong>
+                    {curso.data.cargaHoraria}
+                </p>
+                <p class="text-gray-200">
+                    <strong class="text-white">Vagas: </strong>
+                    {curso.data.vagas}
+                </p>
+                <p class="text-gray-200">
+                    <strong class="text-white">Coordenador: </strong>
+                    <a
+                        href={`${BASE_URL}professores/${coordenador?.slug}`}
+                        class="inline text-sky-600 hover:underline"
+                        title="Saiba mais sobre o coordenador"
+                    >
+                        {coordenador?.data.nome}
+                    </a>
+                </p>
+                <p class="text-gray-200">
+                    <strong class="text-white">Email: </strong>
+                    <a
+                        href={`mailto:${curso.data.email}`}
+                        class="inline text-sky-600 hover:underline"
+                        title="Enviar um email para o coordenador"
+                    >
+                        {curso.data.email}
+                    </a>
+                </p>
+                <p class="text-gray-200">
+                    <strong class="text-white">Telefone: </strong>
+                    <a
+                        href={`tel:${curso.data.telefone}`}
+                        class="inline text-sky-600 hover:underline"
+                        title="Ligar para o coordenador"
+                    >
+                        {curso.data.telefone}
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="w-full max-w-none mt-4 prose dark:prose-invert">
+            <Content />
+        </div>
+
+        {curso.data.titulo === "Sistemas de Informação" && <QuadroDisciplinasSi />}
+        {curso.data.titulo === "Desenvolvimento de Sistemas" && <QuadroDisciplinasDs />}
+    </Container>
+</LayoutPage>

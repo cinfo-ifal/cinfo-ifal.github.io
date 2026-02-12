@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+import LayoutPage from "../../../layouts/layout-page.astro";
+import Container from "../../../components/container.astro";
+import { dataParaLocalString } from "../../../servicos/utils";
+import calendario from "../../../assets/calendario.svg?raw";
+
+export async function getStaticPaths() {
+    const tccs = await getCollection("tccs");
+    return (
+        tccs.map((tcc) => ({
+            params: {
+                slug: tcc.slug,
+            },
+            props: {
+                tcc,
+            },
+        })) || []
+    );
+}
+
+const { tcc } = Astro.props;
+const { Content } = await tcc.render();
+---
+
+<LayoutPage title={tcc.data.titulo}>
+    <Container>
+        <div
+            class="mb-6 p-4 text-gray-800 dark:text-gray-300 border-b border-gray-300 dark:border-gray-700"
+        >
+            <p class="text-gray-600 dark:text-gray-400 text-center text-lg">
+                <span class="text-gray-800 dark:text-gray-200 font-medium">Por: </span>
+                {tcc.data.autores?.join(", ")}
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-400 text-center text-lg">
+                <span class="text-gray-800 dark:text-gray-200 font-medium">Orientação de: </span>
+                {tcc.data.orientador}
+            </p>
+
+            <p
+                class="mt-3 mb-5 flex gap-2 items-center justify-center text-gray-600 dark:text-gray-400"
+            >
+                <span class="text-gray-800 dark:text-gray-200">
+                    <Fragment set:html={calendario} />
+                </span>
+                <time datetime={tcc.data.publicadoEm}>
+                    {dataParaLocalString(tcc.data.publicadoEm)}
+                </time>
+            </p>
+
+            <a
+                href={`/pdfs/tccs/${tcc.data.arquivo}`}
+                class="w-fit my-4 mx-auto block items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800"
+                title={`Baixe o TCC: ${tcc.data.titulo}`}
+            >
+                Download
+            </a>
+
+            {
+                tcc.data.palavrasChave?.length > 0 && (
+                    <div class="flex gap-2 justify-center flex-wrap">
+                        {tcc.data.palavrasChave?.map((palavra: string) => (
+                            <span class="inline-block py-2 px-3 text-sm bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full">
+                                {palavra}
+                            </span>
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+        <section>
+            <h2 class="mb-5 text-2xl font-bold text-center text-gray-800 dark:text-gray-200">Resumo</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="w-full max-w-none prose dark:prose-invert">
+                    <Content />
+                </div>
+            </div>
+        </section>
+    </Container>
+</LayoutPage>

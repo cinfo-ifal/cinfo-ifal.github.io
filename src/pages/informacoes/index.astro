@@ -1,0 +1,81 @@
+---
+import CartaoInformacao from "../../components/cartao-informacao.astro";
+import Container from "../../components/container.astro";
+import LayoutPage from "../../layouts/layout-page.astro";
+
+const informacoes = [
+  {
+    titulo: "Campus Macéio",
+    imagem: "campus-maceio.png",
+    link: "https://www2.ifal.edu.br/campus/maceio",
+    alt: "Ir para o site do ifal com informações sobre o campus Maceió",
+  },
+  {
+    titulo: "CREE",
+    imagem: "cree.png",
+    link: "https://www2.ifal.edu.br/campus/maceio/cree-1",
+    alt: "Ir para o site do ifal com informações sobre o CREE",
+  },
+  {
+    titulo: "Mundo do Trabalho",
+    imagem: "mundo-do-trabalho.png",
+    link: "https://mundodotrabalho.ifal.edu.br/",
+    alt: "Ir para o site do Mundo do Trabalho",
+  },
+  {
+    titulo: "Curso DS",
+    imagem: "curso-ds.png",
+    link: "https://www2.ifal.edu.br/campus/maceio/cursos/tecnicos/tecnico-em-desenvolvimento-de-sistemas",
+    alt: "Ir para o site do ifal com informações sobre o curso de Desenvolvimento de Sistemas",
+  },
+  {
+    titulo: "Curso BSI",
+    imagem: "curso-sistemas-informacao.png",
+    link: "https://www2.ifal.edu.br/campus/maceio/ensino/cursos/superior/bacharelado-em-sistemas-de-informacao",
+    alt: "Ir para o site do ifal com informações sobre o curso de Sistemas de Informação",
+  },
+  {
+    titulo: "Biblioteca",
+    imagem: "biblioteca.png",
+    link: "https://www2.ifal.edu.br/campus/maceio/ensino/biblioteca-benevides-monte",
+    alt: "Ir para o site do ifal com informações sobre a biblioteca Benevides Monte",
+  },
+  {
+    titulo: "Horarios de Aulas/Docentes",
+    imagem: "horarios-aulas-docentes.png",
+    link: "https://www2.ifal.edu.br/campus/maceio/ensino/horario-dos-docentes-2022.2",
+    alt: "Ir para o site do ifal com informações sobre os horários de aulas e docentes",
+  },
+  {
+    titulo: "calendarios academicos",
+    imagem: "calendarios-academicos.png",
+    link: "https://www2.ifal.edu.br/campus/maceio/ensino/calendario-academico-2023",
+    alt: "Ir para o site do ifal com informações sobre os calendários acadêmicos",
+  },
+  {
+    titulo: "editais Ensino",
+    imagem: "editais-ensino.png",
+    link: "https://www2.ifal.edu.br/campus/maceio/ensino/editais-1",
+    alt: "Ir para o site do ifal com informações sobre os editais",
+  }
+];
+---
+
+<LayoutPage title="Informações">
+  <Container>
+    <ul class="mx-auto flex justify-center gap-6 flex-wrap">
+      {
+        informacoes.map((informacao) => (
+          <li>
+            <CartaoInformacao
+              titulo={informacao.titulo}
+              imagem={informacao.imagem}
+              link={informacao.link}
+              alt={informacao.alt}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</LayoutPage>

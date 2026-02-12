@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content"
+import LayoutPage from "../../layouts/layout-page.astro";
+import Container from "../../components/container.astro";
+import CartaoCurso from "../../components/cartao-curso.astro";
+
+const cursos = await getCollection("cursos");
+---
+
+<LayoutPage title="Cursos">
+
+    <Container>
+
+        <ul class="flex flex-col gap-10">
+            {cursos.map(async (curso) => {
+                const { Content } = await curso.render();
+                return <li>
+                    <CartaoCurso
+                        titulo={curso.data.titulo}
+                        nivel={curso.data.nivel}
+                        foto={curso.data.foto}
+                        slug={curso.slug}
+                    >
+                        <Content />
+                    </CartaoCurso>
+                </li>
+            })}
+        </ul>
+
+    </Container>
+
+</LayoutPage>

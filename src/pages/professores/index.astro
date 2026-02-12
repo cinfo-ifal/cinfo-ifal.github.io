@@ -1,0 +1,40 @@
+---
+import Container from "../../components/container.astro";
+import LayoutPage from "../../layouts/layout-page.astro";
+import CartaoProfessor from "../../components/cartao-professor.astro";
+
+import { getCollection } from "astro:content";
+
+const professores = await getCollection("professores");
+
+interface Professor {
+    slug: string;
+    data: {
+        nome: string;
+        email: string;
+        sitePessoal: string;
+        curriculoLattes: string;
+        foto: string;
+    }
+}
+
+---
+
+<LayoutPage title="Professores">
+    <Container>
+        <ul class="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-5">
+            {
+                professores.map((professor: Professor) => (
+                    <CartaoProfessor 
+                        slug={professor.slug}
+                        nome={professor.data.nome}
+                        email={professor.data.email}
+                        sitePessoal={professor.data.sitePessoal}
+                        curriculoLattes={professor.data.curriculoLattes}
+                        foto={professor.data.foto}
+                    />
+                ))
+            }
+        </ul>
+    </Container>
+</LayoutPage>

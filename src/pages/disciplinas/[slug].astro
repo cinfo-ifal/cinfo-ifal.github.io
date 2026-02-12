@@ -1,0 +1,95 @@
+---
+import { getCollection } from "astro:content";
+import LayoutPage from "../../layouts/layout-page.astro";
+import Container from "../../components/container.astro";
+import { getEntry } from "astro:content";
+import Link from "../../components/link.astro";
+
+export async function getStaticPaths() {
+    const disciplinas = await getCollection("disciplinas");
+    return (
+        disciplinas.map((disciplina) => ({
+            params: {
+                slug: disciplina.slug,
+            },
+            props: {
+                disciplina,
+            },
+        })) || []
+    );
+}
+
+const { disciplina } = Astro.props;
+const { Content } = await disciplina.render();
+const professorPromise = disciplina.data.professor?.map((professor: any) =>
+    getEntry("professores", professor)
+);
+const professores = await Promise?.all(professorPromise);
+const curso = await getEntry("cursos", disciplina.data.curso);
+const preRequisito = await getEntry("disciplinas", disciplina.data.preRequisitos);
+---
+
+<LayoutPage title={disciplina.data.titulo}>
+    <Container>
+        <p class="text-gray-600 dark:text-gray-400">
+            <strong class="text-gray-800 dark:text-white">Natureza: </strong>
+            {disciplina.data.natureza}
+        </p>
+        <p class="text-gray-600 dark:text-gray-400">
+            <strong class="text-gray-800 dark:text-white">Modalidade: </strong>
+            {disciplina.data.modalidade}
+        </p>
+        <p class="text-gray-600 dark:text-gray-400">
+            <strong class="text-gray-800 dark:text-white">Carga Horária: </strong>
+            {disciplina.data.cargaHoraria} horas
+        </p>
+        <p class="text-gray-600 dark:text-gray-400">
+            <strong class="text-gray-800 dark:text-white">Período: </strong>
+            <Link
+                href={`cursos/${curso?.slug}#periodo-${disciplina.data.periodo}`}
+                titulo={`Ver todas as disciplinas do ${disciplina.data.periodo}º período do curso de ${curso?.data.titulo}`}
+                conteudo={disciplina.data.periodo + "º"}
+            />
+        </p>
+        <p class="text-gray-600 dark:text-gray-400">
+            <strong class="text-gray-800 dark:text-white">Professor responsável: </strong>{" "}
+            {
+                professores?.map((professor, index) => (
+                    <>
+                        {index === 0 ? "" : " | "}
+                        <Link
+                            href={`professores/${professor?.slug}`}
+                            titulo={`Ver o perfil do professor ${professor?.data.nome}`}
+                            conteudo={professor?.data.nome}
+                        />
+                    </>
+                ))
+            }
+        </p>
+        <p class="text-gray-600 dark:text-gray-400">
+            <strong class="text-gray-800 dark:text-white">Curso: </strong>{" "}
+            <Link
+                href={`cursos/${curso?.slug}`}
+                titulo={`Ver o curso de ${curso?.data.titulo}`}
+                conteudo={curso?.data.titulo}
+            />
+        </p>
+        <p class="text-gray-600 dark:text-gray-400">
+            <strong class="text-gray-800 dark:text-white">Pré-requisitos: </strong>{" "}
+            {
+                preRequisito ? (
+                    <Link
+                        href={`disciplinas/${preRequisito?.slug}`}
+                        titulo={`Ver a disciplina pré-requisto: ${preRequisito?.data.titulo}`}
+                        conteudo={preRequisito?.data.titulo}
+                    />
+                ) : (
+                    "Nenhum"
+                )
+            }
+        </p>
+        <div class="mt-3 w-full max-w-none prose dark:prose-invert">
+            <Content />
+        </div>
+    </Container>
+</LayoutPage>

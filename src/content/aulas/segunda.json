@@ -1,0 +1,110 @@
+[
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "07:00",
+        "termino": "08:40",
+        "grupo": "G1",
+        "disciplina": "programacao_web_1",
+        "professor": "augusto_cesar_melo_de_oliveira"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "07:00",
+        "termino": "08:40",
+        "grupo": "G1",
+        "disciplina": "fundamentos_informatica",
+        "professor": "elvys_soares"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "07:00",
+        "termino": "08:40",
+        "grupo": "G1",
+        "disciplina": "programacao_web_2",
+        "professor": "edison_camilo"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "07:00",
+        "termino": "08:40",
+        "grupo": "G1",
+        "disciplina": "topicos_especiais_e_projeto_integrador",
+        "professor": "flavio_medeiros"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "08:40",
+        "termino": "10:40",
+        "grupo": "G1",
+        "disciplina": "analise_de_projeto_de_software_e_ihc",
+        "professor": "leonardo_fernandes_mendonca_de_oliveira"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "08:40",
+        "termino": "10:40",
+        "grupo": "G1",
+        "disciplina": "banco_de_dados",
+        "professor": "wladia_bessa_da_cruz"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "08:40",
+        "termino": "10:40",
+        "grupo": "G1",
+        "disciplina": "fundamentos_informatica",
+        "professor": "elvys_soares"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "08:40",
+        "termino": "10:40",
+        "grupo": "G1",
+        "disciplina": "programacao_web_2",
+        "professor": "leonardo_fernandes_mendonca_de_oliveira"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "08:40",
+        "termino": "10:40",
+        "grupo": "G1",
+        "disciplina": "programacao_web_1",
+        "professor": "leonardo_fernandes_mendonca_de_oliveira"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "08:40",
+        "termino": "10:40",
+        "grupo": "G1",
+        "disciplina": "topicos_especiais_e_projeto_integrador",
+        "professor": "flavio_medeiros"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "10:40",
+        "termino": "12:20",
+        "grupo": "G1",
+        "disciplina": "introducao_a_programacao",
+        "professor": "ricardo_rubens_gomes_nunes_filho"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "13:30",
+        "termino": "15:10",
+        "grupo": "G1",
+        "disciplina": "introducao_a_programacao",
+        "professor": "ricardo_rubens_gomes_nunes_filho"
+    }
+]

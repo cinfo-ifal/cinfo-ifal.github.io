@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import LayoutPage from "../../../layouts/layout-page.astro";
+import Container from "../../../components/container.astro";
+import { dataParaLocalString } from "../../../servicos/utils";
+import calendario from "../../../assets/calendario.svg?raw";	
+
+export async function getStaticPaths() {
+    const projetos = await getCollection("projetos");
+    return (
+        projetos.map((projeto) => ({
+            params: {
+                slug: projeto.slug,
+            },
+            props: {
+                projeto,
+            },
+        })) || []
+    );
+}
+
+const BASE_URL = import.meta.env.BASE_URL;
+
+const { projeto } = Astro.props;
+const { Content } = await projeto.render();
+---
+
+<LayoutPage title={projeto.data.titulo}>
+    <Container>
+        <div class="mb-6">
+            <img
+                src={`${BASE_URL}images/projetos/${projeto.data.foto}`}
+                alt=""
+                class="w-full max-w-3xl aspect-video mx-auto rounded-lg object-cover"
+            />
+        </div>
+
+        <div
+            class="mb-6 p-4 text-gray-800 dark:text-gray-300 border-y border-gray-300 dark:border-gray-700"
+        >
+            <p class="text-gray-600 dark:text-gray-400 text-center text-lg">
+                <span class="text-gray-800 dark:text-gray-200 font-medium">Por: </span>
+                {projeto.data.integrantes?.join(", ")}
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-400 text-center text-lg">
+                <span class="text-gray-800 dark:text-gray-200 font-medium">Orientação de: </span>
+                {projeto.data.coordenador}
+            </p>
+
+            <p class="mb-3 flex gap-2 justify-center">
+                <time datetime={projeto.data.dataInicio} class="flex gap-2 items-center">
+                    <Fragment set:html={calendario} />
+                    {dataParaLocalString(projeto.data.dataInicio)}
+                </time> -
+                {
+                    projeto.data.dataTermino && (
+                        <time datetime={projeto.data.dataTermino}>
+                            {dataParaLocalString(projeto.data.dataTermino)}
+                        </time>
+                    )
+                }
+            </p>
+        </div>
+        <section>
+            <div class="max-w-3xl mx-auto">
+                <div class="w-full max-w-none prose dark:prose-invert">
+                    <Content />
+                </div>
+            </div>
+        </section>
+    </Container>
+</LayoutPage>

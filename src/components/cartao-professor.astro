@@ -1,0 +1,58 @@
+---
+import web from "../assets/web.svg?raw";
+import emailSvg from "../assets/email.svg?raw";
+import curriculo from "../assets/curriculo.svg?raw";
+
+import LinkCartaoProfessor from "./link-cartao-professor.astro";
+import Link from "./link.astro";
+
+interface Props {
+    slug: string;
+    nome: string;
+    foto: string;
+    email: string;
+    sitePessoal: string;
+    curriculoLattes: string;
+}
+
+const { slug, nome, foto, email, sitePessoal, curriculoLattes } = Astro.props;
+const BASE_URL = import.meta.env.BASE_URL;
+---
+
+<li class="w-full">
+    <div
+        class="w-full p-3 bg-gray-50 dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow"
+    >
+        <img
+            class="w-full h-full aspect-square block object-cover rounded"
+            src={`${BASE_URL}images/professores/${foto}`}
+            alt={`Foto do professor(a) ${nome}`}
+        />
+        <div>
+            <h3
+                class="pb-1 pt-2 text-xl text-center font-semibold text-gray-800 dark:text-white hover:underline line-clamp-1"
+            >
+                <Link
+                    href={`professores/${slug}`}
+                    titulo={`Ir para página com mais detalhes do professor(a) ${nome}`}
+                    conteudo={nome}
+                />
+            </h3>
+
+            <ul class="flex justify-center gap-1">
+                <LinkCartaoProfessor href={"mailto:" + email} nome={nome}>
+                    <span class="sr-only">Email</span>
+                    <Fragment set:html={emailSvg} />
+                </LinkCartaoProfessor>
+                <LinkCartaoProfessor href={sitePessoal} nome={nome}>
+                    <span class="sr-only">Site Pessoal</span>
+                    <Fragment set:html={web} />
+                </LinkCartaoProfessor>
+                <LinkCartaoProfessor href={curriculoLattes} nome={nome}>
+                    <span class="sr-only">Currículo Lattes</span>
+                    <Fragment set:html={curriculo} />
+                </LinkCartaoProfessor>
+            </ul>
+        </div>
+    </div>
+</li>

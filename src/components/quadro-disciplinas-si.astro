@@ -1,0 +1,154 @@
+---
+import {
+    gerarQuadroGeral,
+    pegarDisciplinasPorCurso,
+} from "../servicos/disciplina";
+import Link from "./link.astro";
+
+const disciplinas = await pegarDisciplinasPorCurso("sistemas_de_informacao");
+const quadroHorarios = gerarQuadroGeral(disciplinas);
+const BASE_URL = import.meta.env.BASE_URL;
+---
+
+<div class="mt-10 flex-col">
+    <ul class="mb-5 grid grid-cols-2 sm:grid-cols-4 lg:flex gap-4">
+        {
+            new Array(quadroHorarios.length).fill(0).map((_, index) => {
+                return (
+                    <li class="text-center text-gray-800 dark:text-gray-300">
+                        <button
+                            type="button"
+                            data-button={index + 1}
+                            id={`nav-botao-periodo-${index + 1}`}
+                            class="w-full nav-botoes-periodo p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow hover:bg-gray-100 dark:hover:bg-gray-700 font-medium block rounded-lg data-[page]:bg-blue-700 data-[page]:text-white dark:data-[page]:bg-blue-600"
+                        >
+                            {index + 1}º Periodo
+                        </button>
+                    </li>
+                );
+            })
+        }
+    </ul>
+    <div>
+        {
+            quadroHorarios.map((periodo, index) => (
+                <div
+                    id={`quadro-horario-periodo-${index + 1}`}
+                    class="quadro-horario-periodo relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-200 dark:border-gray-700 hidden"
+                >
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-800 dark:text-gray-300">
+                        <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-900">
+                            {index + 1}º Período
+                        </caption>
+                        <thead class="text-xs text-gray-800 uppercase text-center dark:text-gray-300 border-y border-gray-200 dark:border-gray-700">
+                            <tr>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Segunda-Feira
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Terça-Feira
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Quarta-Feira
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Quinta-Feira
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-6 py-3 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800  whitespace-nowrap"
+                                >
+                                    Sexta-Feira
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {periodo.map((dia) => (
+                                <tr class="border-b last:border-none border-gray-200 dark:border-gray-700">
+                                    {dia.map((disciplina) => (
+                                        <td
+                                            scope="row"
+                                            class="px-6 py-4 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800 text-center"
+                                        >
+                                            <Link
+                                                href={`disciplinas/${disciplina?.codigo}`}
+                                                conteudo={disciplina?.titulo}
+                                            />
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<script>
+    const NAV_BOTOES = document.querySelectorAll(".nav-botoes-periodo")!;
+    const QUADRO_HORARIOS = document.querySelectorAll(
+        ".quadro-horario-periodo"
+    )!;
+
+    function lidar_com_carregamento_inicial() {
+        const NAV_LINK_PERIODO_1 = document.getElementById(
+            "nav-botao-periodo-1"
+        )!;
+        const QUADRO_HORARIO_PERIODO_1 = document.getElementById(
+            "quadro-horario-periodo-1"
+        )!;
+        add_data_page_para_nav_link(NAV_LINK_PERIODO_1);
+        mostrar_quadro_horario(QUADRO_HORARIO_PERIODO_1);
+    }
+
+    function remover_data_page_anterior() {
+        NAV_BOTOES.forEach((navBotao) => navBotao.removeAttribute("data-page"));
+    }
+
+    function add_data_page_para_nav_link(navBotao: HTMLElement) {
+        navBotao.setAttribute("data-page", "true");
+    }
+
+    function esconder_todos_quadro_horario() {
+        QUADRO_HORARIOS.forEach((quadroHorario) =>
+            quadroHorario.classList.add("hidden")
+        );
+    }
+
+    function mostrar_quadro_horario(quadroHorario: HTMLElement) {
+        quadroHorario.classList.remove("hidden");
+    }
+
+    window.addEventListener("load", lidar_com_carregamento_inicial);
+
+    NAV_BOTOES.forEach((navBotao) => {
+        navBotao.addEventListener("click", function (event) {
+            const botao = event.currentTarget as HTMLElement;
+            const periodo = botao.getAttribute("data-button");
+
+            remover_data_page_anterior();
+            add_data_page_para_nav_link(botao);
+
+            const quadro = document.getElementById(
+                `quadro-horario-periodo-${periodo}`
+            )!;
+            esconder_todos_quadro_horario();
+            mostrar_quadro_horario(quadro);
+            quadro.focus();
+        });
+    });
+</script>

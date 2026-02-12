@@ -1,0 +1,29 @@
+---
+import web from "../assets/web.svg?raw";
+import emailSvg from "../assets/email.svg?raw";
+import curriculo from "../assets/curriculo.svg?raw";
+
+interface Props {
+    nome: string;
+    href: string;
+}
+
+const { nome, href } = Astro.props;
+---
+
+<Fragment>
+    {
+        href && (
+            <li>
+                <a
+                    href={href}
+                    target="_blank"
+                    title={`Link para o currículo lattes do professor(a) ${nome}`}
+                    class="mt-2 p-2 text-blue-600 dark:text-blue-400 text-xl block hover:bg-gray-300 dark:hover:bg-gray-700  rounded"
+                >
+                    <slot />
+                </a>
+            </li>
+        )
+    }
+</Fragment>

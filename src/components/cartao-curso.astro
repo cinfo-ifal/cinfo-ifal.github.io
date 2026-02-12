@@ -1,0 +1,38 @@
+---
+import BotaoLink from "./botao-link.astro";
+
+interface Props {
+    titulo: string;
+    nivel: string;
+    foto: string;
+    slug: string;
+}
+
+const URL_BASE = import.meta.env.BASE_URL;
+const { titulo, nivel, foto, slug } = Astro.props;
+---
+
+<div class="min-h-[400px] rounded-lg relative overflow-hidden md:min-h-[500px]">
+    <img
+        src={`${URL_BASE}images/cursos/${foto}`}
+        alt=""
+        class="w-full h-full object-cover rounded-2xl absolute z-0 top-0 right-0"
+    />
+    <div class="h-full p-5 flex flex-col justify-between z-5 absolute md:p-10">
+        <h3 class="text-white text-3xl z-10 flex flex-col md:text-4xl">
+            <span class="text-xl md:text-2xl">{nivel}</span>
+            {titulo}
+        </h3>
+        <div
+            class="prose w-full mt-auto max-w-screen-sm text-zinc-200 line-clamp-5 md:text-lg z-10 md:line-clamp-[7]"
+        >
+            <slot />
+        </div>
+        <BotaoLink
+            href={`cursos/${slug}`}
+            titulo={`Saiba mais sobre o curso: ${titulo}`}
+        >
+            Saiba mais
+        </BotaoLink>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import LayoutPage from "../../../layouts/layout-page.astro";
+import Container from "../../../components/container.astro";
+
+const projetosEnsino = await getCollection("projetos", ({ data }) => {
+    return data.tipo === "pesquisa";
+});
+
+const URL_BASE = import.meta.env.BASE_URL;
+---
+
+<LayoutPage title="Projeto de Pesquisa">
+    <Container>
+        <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {
+                projetosEnsino.map((projeto) => (
+                    <li class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class="mb-3">
+                            <img class="w-full aspect-video rounded block object-cover" src={`${URL_BASE}images/projetos/${projeto.data.foto}`} alt="" />
+                        </div>
+                        <div>
+                            <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white line-clamp-2">
+                                {projeto.data.titulo}
+                            </h2>
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{projeto.data.descricao}</p>
+                        </div>
+                        <a
+                            href={`${URL_BASE}projetos/projetos-pesquisa/${projeto.slug}`}
+                            class="w-fit mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800"
+                        >
+                            Ver mais
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </Container>
+</LayoutPage>

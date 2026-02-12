@@ -1,0 +1,129 @@
+---
+import { getCollection } from "astro:content";
+import Container from "../components/container.astro";
+import LayoutPrincipal from "../layouts/layout-principal.astro";
+import CartaoProfessor from "../components/cartao-professor.astro";
+import CartaoNoticiaPrincipal from "../components/cartao-noticia-principal.astro";
+import CartaoNoticia from "../components/cartao-noticia.astro";
+import setaParaDireita  from "../assets/seta-para-direita.svg?raw";
+
+const professores = await getCollection("professores");
+const noticias = await getCollection("noticias");
+const BASE_URL = import.meta.env.BASE_URL;
+---
+
+<LayoutPrincipal title="CINFO | Coordenação de Informática IFAL">
+    <section
+        class="bg-center bg-no-repeat bg-[url('/images/hero.png')] bg-cover bg-gray-500 bg-blend-multiply"
+    >
+        <Container>
+            <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-48">
+                <h1
+                    class="mb-4 text-3xl font-extrabold tracking-wide leading-none text-white md:text-4xl lg:text-5xl"
+                >
+                    Coordenação de Informática <span class="text-emerald-500">IFAL</span>
+                </h1>
+                <p class="mb-8 text-lg font-normal text-white lg:text-xl sm:px-16 lg:px-32">
+                    A Coordenação dos Cursos de Informática do IFAL - Instituto Federal de Alagoas,
+                    campus Maceió, é responsável pela gestão e supervisão dos cursos técnicos e
+                    superiores na área de Informática.
+                </p>
+                <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                    <a
+                        title="Mais informações sobre a Coordenação de Informática"
+                        href={`${BASE_URL}informacoes`}
+                        class="inline-flex justify-center items-center gap-2 py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+                    >
+                        Mais Informações
+                        <Fragment set:html={setaParaDireita} />
+                    </a>
+                    <a
+                        href="https://www2.ifal.edu.br/campus/maceio"
+                        target="_blank"
+                        title="Mais sobre a Coordenação de Informática"
+                        class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
+                    >
+                        Site do IFAL
+                    </a>
+                </div>
+            </div>
+        </Container>
+    </section>
+    <section class="py-10 bg-white dark:bg-gray-900">
+        <Container>
+            <div class="flex justify-between items-center">
+                <h2 class="text-gray-800 dark:text-white text-2xl">Notícias</h2>
+                <a
+                    href={`${BASE_URL}noticias`}
+                    class="inline-flex justify-center items-center gap-2 text-base font-medium text-center text-gray-800 dark:text-white hover:underline"
+                    title="Ver todas as notícias"
+                >
+                    Ver todas
+                    <Fragment set:html={setaParaDireita} />
+                </a>
+            </div>
+            <ul class="py-10 w-full grid grid-cols-1 md:grid-cols-2 md:grid-rows-3 gap-5 md:gap-10">
+                {
+                    noticias.map((noticia, index) => {
+                        if (index === 0) {
+                            return (
+                                <li class="col-span-1 md:row-span-3">
+                                    <CartaoNoticiaPrincipal
+                                        slug={noticia.slug}
+                                        titulo={noticia.data.titulo}
+                                        descricao={noticia.data.descricao}
+                                        foto={noticia.data.foto}
+                                    />
+                                </li>
+                            );
+                        }
+                        return (
+                            <li class="h-fit md:h-full col-span-1 md:grid-rows-1">
+                                <CartaoNoticia
+                                    slug={noticia.slug}
+                                    titulo={noticia.data.titulo}
+                                    descricao={noticia.data.descricao}
+                                    foto={noticia.data.foto}
+                                />
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        </Container>
+    </section>
+    <section class="py-10 bg-gradient-to-r from-[#2A444E] to-[#629CB4]">
+        <Container>
+            <div class="flex justify-between items-center">
+                <h2 class="text-white text-2xl">Professores</h2>
+                <a
+                    href={`${BASE_URL}professores`}
+                    class="inline-flex justify-center items-center gap-2 text-base font-medium text-center text-white hover:underline"
+                    title="Ver todos os professores"
+                >
+                    Ver todos
+                    <Fragment set:html={setaParaDireita} />
+                </a>
+            </div>
+            <ul
+                class="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-5"
+            >
+                {
+                    professores.map(
+                        (professor, index) =>
+                            index < 8 && (
+                                <CartaoProfessor
+                                    slug={professor.slug}
+                                    nome={professor.data.nome}
+                                    email={professor.data.email}
+                                    sitePessoal={professor.data.sitePessoal}
+                                    curriculoLattes={professor.data.curriculoLattes}
+                                    foto={professor.data.foto}
+                                />
+                            )
+                    )
+                }
+            </ul>
+        </Container>
+    </section>
+</LayoutPrincipal>

@@ -1,0 +1,101 @@
+---
+import { getCollection } from "astro:content";
+import LayoutPage from "../../layouts/layout-page.astro";
+import Container from "../../components/container.astro";
+import Link from "../../components/link.astro";
+
+export async function getStaticPaths() {
+    const professores = await getCollection("professores");
+    return (
+        professores.map((professor) => ({
+            params: {
+                slug: professor.slug,
+            },
+            props: {
+                professor,
+            },
+        })) || []
+    );
+}
+
+const BASE_URL = import.meta.env.BASE_URL;
+
+const { professor } = Astro.props;
+const { Content } = await professor.render();
+const disciplinas = await getCollection("disciplinas", ({ data }) =>
+    data.professor?.includes(professor.slug)
+);
+---
+
+<LayoutPage title={professor.data.nome}>
+    <Container>
+        <div class="py-10 md:grid md:grid-cols-5">
+            <div class="w-full md:col-span-2">
+                <div class="w-full pb-10 border-b border-gray-200 dark:border-gray-700">
+                    <div>
+                        <div>
+                            <img
+                                class="w-56 aspect-square object-cover rounded-lg shadow"
+                                src={`${BASE_URL}images/professores/${professor.data.foto}`}
+                                alt={`Foto do professor: ${professor.data.nome}`}
+                            />
+                        </div>
+                        <ul class="pt-6">
+                            <li>
+                                <strong class="text-gray-800 dark:text-white">E-mail: </strong>
+                                <Link
+                                    href={`mailto:${professor.data.email}`}
+                                    titulo={`Enviar e-mail para o professor ${professor.data.nome}`}
+                                    conteudo={professor.data.email}
+                                />
+                            </li>
+                            <li>
+                                <strong class="text-gray-800 dark:text-white"
+                                    >Site Pessoal:
+                                </strong>
+                                <Link
+                                    href={`mailto:${professor.data.sitePessoal}`}
+                                    titulo={`Link para o site pessoal do professor ${professor.data.nome}`}
+                                    conteudo={professor.data.sitePessoal}
+                                />
+                            </li>
+                            <li>
+                                <strong class="text-gray-800 dark:text-white">Lattes: </strong>
+                                <Link
+                                    href={`mailto:${professor.data.curriculoLattes}`}
+                                    titulo={`Link para o currículo lattes do professor ${professor.data.nome}`}
+                                    conteudo={professor.data.curriculoLattes}
+                                />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold text-gray-800 dark:text-white pt-10">
+                        Disciplinas
+                    </h2>
+                    <ul class="pt-4">
+                        {
+                            disciplinas.map((disciplina) => (
+                                <li>
+                                    <Link
+                                        href={`${BASE_URL}disciplinas/${disciplina.slug}`}
+                                        titulo={`Ir para a página da disciplina: ${disciplina.data.titulo}`}
+                                        conteudo={disciplina.data.titulo}
+                                    />
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+            <section
+                class="pt-6 md:pl-10 md:pt-0 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700 md:col-span-3"
+            >
+                <article class="max-w-none prose dark:prose-invert">
+                    <Content />
+                </article>
+            </section>
+        </div>
+    </Container>
+</LayoutPage>

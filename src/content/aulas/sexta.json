@@ -1,0 +1,29 @@
+[
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "07:00",
+        "termino": "08:40",
+        "grupo": "G1",
+        "disciplina": "topicos_especiais_e_projeto_integrador",
+        "professor": "flavio_medeiros"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "08:40",
+        "termino": "10:40",
+        "grupo": "G1",
+        "disciplina": "topicos_especiais_e_projeto_integrador",
+        "professor": "flavio_medeiros"
+    },
+    {
+        "curso": "desenvolvimento_de_sistemas",
+        "turma": "911A",
+        "inicio": "14:00",
+        "termino": "15:40",
+        "grupo": "G1",
+        "disciplina": "analise_de_projeto_de_software_e_ihc",
+        "professor": "leonardo_fernandes_mendonca_de_oliveira"
+    }
+]

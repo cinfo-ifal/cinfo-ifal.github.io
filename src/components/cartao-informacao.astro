@@ -1,0 +1,26 @@
+---
+interface Props {
+  titulo: string;
+  imagem: string;
+  link: string;
+  alt: string;
+}
+
+const { titulo, imagem, link } = Astro.props;
+const URL_BASE = import.meta.env.BASE_URL;
+---
+
+<a
+  class="text-blue-600 dark:text-blue-400 hover:underline"
+  href={link}
+  target="_blank"
+>
+  <div class="w-full sm:max-w-xs">
+    <img
+      class="w-full aspect-video rounded-lg border border-gray-200 dark:border-gray-700 object-cover"
+      src={`${URL_BASE}images/informacoes/${imagem}`}
+      alt=""
+    />
+    <h2 class="px-2 py-1 text-lg text-center font-medium">{titulo}</h2>
+  </div>
+</a>

@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import LayoutPage from "../../../layouts/layout-page.astro";
+import CartaoGuia from "../../../components/cartao-guia.astro";
+import Container from "../../../components/container.astro";
+
+const guias = await getCollection("guias");
+---
+
+<LayoutPage title="Guias">
+    <Container>
+        {
+            guias.map((guia) => (
+                <CartaoGuia
+                    slug={guia.slug}
+                    titulo={guia.data.titulo}
+                    descricao={guia.data.descricao}
+                />
+            ))
+        }
+    </Container>
+</LayoutPage>
