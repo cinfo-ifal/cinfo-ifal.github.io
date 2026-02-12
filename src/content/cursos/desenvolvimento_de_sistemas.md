@@ -6,10 +6,10 @@ cargaHoraria: 3.300 horas
 duracao: 3 anos
 modalidade: Presencial
 vagas: 36
-telefone: 2126-7043
+telefone: 2126-7043 (ramal)
 foto: desenvolvimento_de_sistemas.png
 email: coord.info.maceio@ifal.edu.br
-coordenador: flavio_medeiros
+coordenador: augusto_cesar_melo_de_oliveira
 monitor: "Nome do monitor"
 horariosMonitoria: "16:00 - 18:00"
 ---
