@@ -6,7 +6,6 @@ import { dataParaLocalString } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";
 
 const tccs = await getCollection("tccs");
-const URL_BASE = import.meta.env.BASE_URL;
 ---
 
 <LayoutPage title="TCCs">
@@ -17,7 +16,7 @@ const URL_BASE = import.meta.env.BASE_URL;
                     <li>
                         <a
                             class="w-full max-w-md p-6 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg block"
-                            href={`${URL_BASE}projetos/tccs/${tcc.slug}`}
+                            href={`/projetos/tccs/${tcc.slug}`}
                             title={"Saiba mais sobre o tcc: " + tcc.data.titulo}
                         >
                             <h2 class="text-gray-800 text-lg font-medium dark:text-gray-200 line-clamp-3">

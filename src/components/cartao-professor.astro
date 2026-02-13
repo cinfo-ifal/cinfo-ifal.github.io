@@ -16,7 +16,6 @@ interface Props {
 }
 
 const { slug, nome, foto, email, sitePessoal, curriculoLattes } = Astro.props;
-const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <li class="w-full">
@@ -25,7 +24,7 @@ const BASE_URL = import.meta.env.BASE_URL;
     >
         <img
             class="w-full h-full aspect-square block object-cover rounded"
-            src={`${BASE_URL}images/professores/${foto}`}
+            src={`/images/professores/${foto}`}
             alt={`Foto do professor(a) ${nome}`}
         />
         <div>

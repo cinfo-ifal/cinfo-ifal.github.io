@@ -4,7 +4,7 @@ publicadoEm: 2026-02-12 11:25:00
 modificadoEm: 2026-02-12 11:25:00
 tags: [extensão, edital]
 autoria: [Samuel Pontes, estagiário de Jornalismo]
-foto: https://www2.ifal.edu.br/noticias/proex-publica-edital-para-selecao-de-programas-e-projetos-de-extensao/inscricoes-para-propostas-no-artifal-minha-comunidade-mulheres-empreendedoras-agricultura-familiar-peaf-propeq-e-economia-solidaria-ecosol.png/@@images/386f205d-06b8-44b5-bdb2-41ab167f39da.png
+foto: proex.png
 descricao: As inscrições já estão abertas e seguem até o dia 23 de março
 ---
 

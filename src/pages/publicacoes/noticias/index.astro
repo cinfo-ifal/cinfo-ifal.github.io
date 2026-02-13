@@ -3,15 +3,21 @@ import { getCollection } from "astro:content";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
 import CartaoNoticiaPrincipal from "../../../components/cartao-noticia-principal.astro";
+import type { Noticia } from "../../../types/noticia";
 
-const noticias = await getCollection("noticias");
+const noticias: Noticia[] = await getCollection("noticias");
+const noticiasOrdenadas = noticias.sort((a, b) => {
+  const dataA = new Date(a.data.publicadoEm);
+  const dataB = new Date(b.data.publicadoEm);
+  return dataB.getTime() - dataA.getTime();
+});
 ---
 
 <LayoutPage title="Notícias">
     <Container>
         <ul class="grid md:grid-cols-3 gap-5">
             {
-                noticias.map((noticia) => (
+                noticiasOrdenadas.map((noticia) => (
                     <CartaoNoticiaPrincipal
                         slug={noticia.slug}
                         descricao={noticia.data.descricao}

@@ -20,8 +20,6 @@ export async function getStaticPaths() {
     );
 }
 
-const BASE_URL = import.meta.env.BASE_URL;
-
 const { curso } = Astro.props;
 const { Content } = await curso.render();
 
@@ -36,7 +34,7 @@ console.log(curso.data.titulo);
             <div class="w-full">
                 <img
                     class="w-full h-full object-cover absolute top-0 left-0 z-[-1]"
-                    src={`${BASE_URL}images/cursos/${curso.data.foto}`}
+                    src={`/images/cursos/${curso.data.foto}`}
                     alt=""
                 />
             </div>
@@ -68,7 +66,7 @@ console.log(curso.data.titulo);
                 <p class="text-gray-200">
                     <strong class="text-white">Coordenador: </strong>
                     <a
-                        href={`${BASE_URL}professores/${coordenador?.slug}`}
+                        href={`/professores/${coordenador?.slug}`}
                         class="inline text-sky-600 hover:underline"
                         title="Saiba mais sobre o coordenador"
                     >

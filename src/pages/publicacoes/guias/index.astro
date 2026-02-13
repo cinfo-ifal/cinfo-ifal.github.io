@@ -3,14 +3,20 @@ import { getCollection } from "astro:content";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import CartaoGuia from "../../../components/cartao-guia.astro";
 import Container from "../../../components/container.astro";
+import type { Guia } from "../../../types/guia";
 
-const guias = await getCollection("guias");
+const guias: Guia[] = await getCollection("guias");
+const sortedGuias = guias.sort((a, b) => {
+    const dateA = new Date(a.data.publicadoEm);
+    const dateB = new Date(b.data.publicadoEm);
+    return dateB.getTime() - dateA.getTime();
+});
 ---
 
 <LayoutPage title="Guias">
     <Container>
         {
-            guias.map((guia) => (
+            sortedGuias.map((guia) => (
                 <CartaoGuia
                     slug={guia.slug}
                     titulo={guia.data.titulo}

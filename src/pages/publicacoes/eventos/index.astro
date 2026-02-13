@@ -4,16 +4,21 @@ import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
 import { dataParaLocalString } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";
+import type { Evento } from "../../../types/evento";
 
-const eventos = await getCollection("eventos");
-const BASE_URL = import.meta.env.BASE_URL;
+const eventos: Evento[] = await getCollection("eventos");
+const eventosOrdenados = eventos.sort((a, b) => {
+    const dataA = new Date(a.data.dataInicio);
+    const dataB = new Date(b.data.dataInicio);
+    return dataB.getTime() - dataA.getTime();
+});
 ---
 
 <LayoutPage title="Eventos">
     <Container>
         <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {
-                eventos.map((evento) => (
+                eventosOrdenados.map((evento) => (
                     <li class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white line-clamp-2">
                             {evento.data.titulo}
@@ -30,7 +35,7 @@ const BASE_URL = import.meta.env.BASE_URL;
                             {evento.body}
                         </p>
                         <a
-                            href={`${BASE_URL}publicacoes/eventos/${evento.slug}`}
+                            href={`/publicacoes/eventos/${evento.slug}`}
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             Saiba mais

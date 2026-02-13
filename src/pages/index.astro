@@ -10,8 +10,12 @@ import type { Noticia } from "../types/noticia";
 import type { Professor } from "../types/professor";
 
 const professores: Professor[] = await getCollection("professores");
-const noticias: Noticia[] = await getCollection("noticias");
-const BASE_URL = import.meta.env.BASE_URL;
+const noticias: Noticia[] = await getCollection("noticias")
+const noticiasOrdenadas = noticias.sort((a, b) => {
+  const dataA = new Date(a.data.publicadoEm);
+  const dataB = new Date(b.data.publicadoEm);
+  return dataB.getTime() - dataA.getTime();
+});
 ---
 
 <LayoutPrincipal title="CINFO | Coordenação de Informática IFAL">
@@ -37,7 +41,7 @@ const BASE_URL = import.meta.env.BASE_URL;
         >
           <a
             title="Mais informações sobre a Coordenação de Informática"
-            href={`${BASE_URL}informacoes`}
+            href="/informacoes" 
             class="inline-flex justify-center items-center gap-2 py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
           >
             Mais Informações
@@ -72,9 +76,10 @@ const BASE_URL = import.meta.env.BASE_URL;
         class="py-10 w-full grid grid-cols-1 md:grid-cols-2 md:grid-rows-3 gap-5 md:gap-10"
       >
         {
-          noticias.map((noticia: Noticia, index: number) => {
-            if (index === 0) {
-              return (
+          noticiasOrdenadas.map(
+            (noticia: Noticia, index: number) =>
+              index < 4 &&
+              (index === 0 ? (
                 <li class="col-span-1 md:row-span-3">
                   <CartaoNoticiaPrincipal
                     slug={noticia.slug}
@@ -83,19 +88,17 @@ const BASE_URL = import.meta.env.BASE_URL;
                     foto={noticia.data.foto}
                   />
                 </li>
-              );
-            }
-            return (
-              <li class="h-fit md:h-full col-span-1 md:grid-rows-1">
-                <CartaoNoticia
-                  slug={noticia.slug}
-                  titulo={noticia.data.titulo}
-                  descricao={noticia.data.descricao}
-                  foto={noticia.data.foto}
-                />
-              </li>
-            );
-          })
+              ) : (
+                <li class="h-fit md:h-full col-span-1 md:grid-rows-1">
+                  <CartaoNoticia
+                    slug={noticia.slug}
+                    titulo={noticia.data.titulo}
+                    descricao={noticia.data.descricao}
+                    foto={noticia.data.foto}
+                  />
+                </li>
+              )),
+          )
         }
       </ul>
     </Container>
@@ -105,7 +108,7 @@ const BASE_URL = import.meta.env.BASE_URL;
       <div class="flex justify-between items-center">
         <h2 class="text-white text-2xl">Professores</h2>
         <a
-          href={`${BASE_URL}professores`}
+          href="/professores"
           class="inline-flex justify-center items-center gap-2 text-base font-medium text-center text-white hover:underline"
           title="Ver todos os professores"
         >

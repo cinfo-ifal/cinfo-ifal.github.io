@@ -19,8 +19,6 @@ export async function getStaticPaths() {
     );
 }
 
-const BASE_URL = import.meta.env.BASE_URL;
-
 const { projeto } = Astro.props;
 const { Content } = await projeto.render();
 ---
@@ -29,7 +27,7 @@ const { Content } = await projeto.render();
     <Container>
         <div class="mb-6">
             <img
-                src={`${BASE_URL}images/projetos/${projeto.data.foto}`}
+                src={`/images/projetos/${projeto.data.foto}`}
                 alt=""
                 class="w-full max-w-3xl aspect-video mx-auto rounded-lg object-cover"
             />

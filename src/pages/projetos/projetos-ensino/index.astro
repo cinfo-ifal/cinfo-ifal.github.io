@@ -7,7 +7,6 @@ const projetosEnsino = await getCollection("projetos", ({ data }) => {
     return data.tipo === "ensino";
 });
 
-const URL_BASE = import.meta.env.BASE_URL;
 ---
 
 <LayoutPage title="Projeto de Ensino">
@@ -17,7 +16,7 @@ const URL_BASE = import.meta.env.BASE_URL;
                 projetosEnsino.map((projeto) => (
                     <li class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div class="mb-3">
-                            <img class="w-full aspect-video rounded block object-cover" src={`${URL_BASE}images/projetos/${projeto.data.foto}`} alt="" />
+                            <img class="w-full aspect-video rounded block object-cover" src={`/images/projetos/${projeto.data.foto}`} alt="" />
                         </div>
                         <div>
                             <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white line-clamp-2">
@@ -26,7 +25,7 @@ const URL_BASE = import.meta.env.BASE_URL;
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{projeto.data.descricao}</p>
                         </div>
                         <a
-                            href={`${URL_BASE}projetos/projetos-ensino/${projeto.slug}`}
+                            href={`/projetos/projetos-ensino/${projeto.slug}`}
                             class="w-fit mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800"
                         >
                             Ver mais

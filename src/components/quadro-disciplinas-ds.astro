@@ -3,7 +3,6 @@ import { getEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
 const aulas = await getCollection("aulas");
-const BASE_URL = import.meta.env.BASE_URL;
 
 const diasDaSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
@@ -99,7 +98,7 @@ interface Aula {
                                             class="px-6 py-4 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800 text-center"
                                         >
                                             <a
-                                                href={`${BASE_URL}disciplinas/${disciplina?.slug}`}
+                                                href={`/disciplinas/${disciplina?.slug}`}
                                                 class="text-blue-600 dark:text-blue-400 hover:underline"
                                             >
                                                 {disciplina?.data?.titulo}
@@ -111,7 +110,7 @@ interface Aula {
                                         >
                                             {professor?.data?.nome ? (
                                                 <a
-                                                    href={`${BASE_URL}professores/${professor?.slug}`}
+                                                    href={`/professores/${professor?.slug}`}
                                                     class="text-blue-600 dark:text-blue-400 hover:underline"
                                                 >
                                                     {professor?.data?.nome}

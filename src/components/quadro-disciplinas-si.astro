@@ -7,7 +7,6 @@ import Link from "./link.astro";
 
 const disciplinas = await pegarDisciplinasPorCurso("sistemas_de_informacao");
 const quadroHorarios = gerarQuadroGeral(disciplinas);
-const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <div class="mt-10 flex-col">
@@ -83,7 +82,7 @@ const BASE_URL = import.meta.env.BASE_URL;
                                             class="px-6 py-4 even:bg-gray-50  dark:even:bg-gray-900 odd:bg-white dark:odd:bg-gray-800 text-center"
                                         >
                                             <Link
-                                                href={`disciplinas/${disciplina?.codigo}`}
+                                                href={`/disciplinas/${disciplina?.codigo}`}
                                                 conteudo={disciplina?.titulo}
                                             />
                                         </td>

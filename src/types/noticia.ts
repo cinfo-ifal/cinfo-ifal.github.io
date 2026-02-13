@@ -4,5 +4,8 @@ export type Noticia = {
     titulo: string;
     descricao: string;
     foto: string;
+    publicadoEm: string;
+    modificadoEm: string;
+    autoria: string[];
   }
 }

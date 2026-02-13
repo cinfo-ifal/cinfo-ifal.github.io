@@ -8,7 +8,6 @@ import menu from "../assets/menu.svg?raw";
 import LinkNavbar from "./link-navbar.astro";
 import LinkSubmenu from "./link-submenu.astro";
 
-const BASE_URL = import.meta.env.BASE_URL;
 
 const cursos = await getCollection("cursos");
 ---
@@ -20,12 +19,12 @@ const cursos = await getCollection("cursos");
         <nav>
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2">
                 <a
-                    href={BASE_URL}
+                    href="/"
                     class="flex items-center space-x-3 rtl:space-x-reverse"
                     title="Ir para a página inicial"
                 >
                     <img
-                        src={`${BASE_URL}images/cinfo-logo.png`}
+                        src="/images/cinfo-logo.png"
                         class="h-12"
                         alt="logo da cinfo"
                         aria-hidden="true"
@@ -59,13 +58,13 @@ const cursos = await getCollection("cursos");
                         class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
                     >
                         <LinkNavbar
-                            href={`${BASE_URL}informacoes`}
+                            href="/informacoes"
                             title="Ir para a página de informações"
                         >
                             Informações
                         </LinkNavbar>
                         <LinkNavbar
-                            href={`${BASE_URL}professores`}
+                            href="/professores"
                             title="Ir para a página de professores"
                         >
                             Professores
@@ -74,7 +73,7 @@ const cursos = await getCollection("cursos");
                             {
                                 cursos.map((curso) => (
                                     <LinkSubmenu
-                                        href={`${BASE_URL}cursos/${curso.slug}`}
+                                        href={`/cursos/${curso.slug}`}
                                         title={`Ir para a página do curso: ${curso.data.titulo}`}
                                     >
                                         {curso.data.titulo}
@@ -84,45 +83,45 @@ const cursos = await getCollection("cursos");
                         </SubmenuNav>
                         <SubmenuNav id="publicacoes" texto_botao="Publicações" e_submenu={false}>
                             <LinkSubmenu
-                                href={`${BASE_URL}publicacoes/noticias`}
+                                href="/publicacoes/noticias"
                                 title="Ir para a página de notícias"
                             >
                                 Notícias
                             </LinkSubmenu>
                             <LinkSubmenu
-                                href={`${BASE_URL}publicacoes/eventos`}
+                                href="/publicacoes/eventos"
                                 title="Ir para a página de eventos"
                             >
                                 Eventos
                             </LinkSubmenu>
                             <LinkSubmenu
-                                href={`${BASE_URL}publicacoes/guias`}
-                                title="Ir para a página de eventos"
+                                href="/publicacoes/guias"
+                                title="Ir para a página de guias"
                             >
                                 Guias
                             </LinkSubmenu>
                         </SubmenuNav>
                         <SubmenuNav id="projetos" texto_botao="Projetos" e_submenu={false}>
                             <LinkSubmenu
-                                href={`${BASE_URL}projetos/projetos-ensino`}
+                                href="/projetos/projetos-ensino"
                                 title="Ir para a página de projetos de Ensino"
                             >
                                 Projetos de Ensino
                             </LinkSubmenu>
                             <LinkSubmenu
-                                href={`${BASE_URL}projetos/projetos-pesquisa`}
+                                href="/projetos/projetos-pesquisa"
                                 title="Ir para a página de projetos de Pesquisa Aplicada"
                             >
                                 Projetos de Pesquisa Aplicada
                             </LinkSubmenu>
                             <LinkSubmenu
-                                href={`${BASE_URL}projetos/projetos-extensao`}
+                                href="/projetos/projetos-extensao"
                                 title="Ir para a página de projetos de Extensão"
                             >
                                 Projetos de Extensão
                             </LinkSubmenu>
                             <LinkSubmenu
-                                href={`${BASE_URL}projetos/tccs`}
+                                href="/projetos/tccs"
                                 title="Ir para a página de TCCs"
                             >
                                 TCCs

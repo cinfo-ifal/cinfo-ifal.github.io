@@ -46,7 +46,7 @@ const preRequisito = await getEntry("disciplinas", disciplina.data.preRequisitos
         <p class="text-gray-600 dark:text-gray-400">
             <strong class="text-gray-800 dark:text-white">Período: </strong>
             <Link
-                href={`cursos/${curso?.slug}#periodo-${disciplina.data.periodo}`}
+                href={`/cursos/${curso?.slug}#periodo-${disciplina.data.periodo}`}
                 titulo={`Ver todas as disciplinas do ${disciplina.data.periodo}º período do curso de ${curso?.data.titulo}`}
                 conteudo={disciplina.data.periodo + "º"}
             />
@@ -58,7 +58,7 @@ const preRequisito = await getEntry("disciplinas", disciplina.data.preRequisitos
                     <>
                         {index === 0 ? "" : " | "}
                         <Link
-                            href={`professores/${professor?.slug}`}
+                            href={`/professores/${professor?.slug}`}
                             titulo={`Ver o perfil do professor ${professor?.data.nome}`}
                             conteudo={professor?.data.nome}
                         />
@@ -69,7 +69,7 @@ const preRequisito = await getEntry("disciplinas", disciplina.data.preRequisitos
         <p class="text-gray-600 dark:text-gray-400">
             <strong class="text-gray-800 dark:text-white">Curso: </strong>{" "}
             <Link
-                href={`cursos/${curso?.slug}`}
+                href={`/cursos/${curso?.slug}`}
                 titulo={`Ver o curso de ${curso?.data.titulo}`}
                 conteudo={curso?.data.titulo}
             />
@@ -79,7 +79,7 @@ const preRequisito = await getEntry("disciplinas", disciplina.data.preRequisitos
             {
                 preRequisito ? (
                     <Link
-                        href={`disciplinas/${preRequisito?.slug}`}
+                        href={`/disciplinas/${preRequisito?.slug}`}
                         titulo={`Ver a disciplina pré-requisto: ${preRequisito?.data.titulo}`}
                         conteudo={preRequisito?.data.titulo}
                     />
