@@ -2,8 +2,9 @@
 titulo: Manual de Publicação - Site CINFO
 publicadoEm: 2026-02-18 14:34:00
 modificadoEm: 2026-02-18 14:34:00
-tags: [munual, tag2]
-autoria: [ricardo_rubens_gomes_nunes_filho]
+tags: [manual]
+autoria: [Ricardo Nunes]
+foto: manual.svg
 descricao: Orienta para publicação de conteúdos no site da Coordenação de Informática (CINFO)
 ---
 
@@ -107,14 +108,16 @@ Imagens: `public/images/noticias/`
 
 ```markdown
 ---
-titulo: "Título da Notícia"
-publicadoEm: 2026-02-11 14:34:00
-modificadoEm: 2026-02-11 14:34:00
-tags: [tag1, tag2]
-autoria: [Nome do Autor]
-foto: nome_da_imagem.jpg
-descricao: Breve descrição da notícia.
+titulo: Semana Acadêmica de Tecnologia 2026
+publicadoEm: 2026-03-10 10:00:00
+modificadoEm: 2026-03-10 10:00:00
+tags: [evento, tecnologia]
+autoria: [Coordenação CINFO]
+foto: semana_academica_2026.jpg
+descricao: Evento voltado para inovação e desenvolvimento.
 ---
+
+Conteúdo da notícia (utilizando markdown)...
 ```
 
 #### Passo a Passo
@@ -125,22 +128,6 @@ descricao: Breve descrição da notícia.
 4. Preencher os metadados
 5. Escrever o conteúdo
 6. Commit e push
-
-#### Exemplo
-
-```markdown
----
-titulo: Semana Acadêmica de Tecnologia 2026
-publicadoEm: 2026-03-10 10:00:00
-modificadoEm: 2026-03-10 10:00:00
-tags: [evento, tecnologia]
-autoria: [Coordenação CINFO]
-foto: semana_academica_2026.jpg
-descricao: Evento voltado para inovação e desenvolvimento.
----
-
-Conteúdo da notícia...
-```
 
 ---
 
@@ -160,14 +147,23 @@ Imagens: `public/images/professores/`
 
 ```markdown
 ---
-nome: Nome Completo do Professor
+nome: Ricardo Silva
 curriculoLattes: http://lattes.cnpq.br/0000000000000000
 sitePessoal:
-email: nome.sobrenome@ifal.edu.br
-sigaa: https://sigaa.ifal.edu.br/sigaa/public/docente/portal.jsf?siape=0000000
+email: ricardo.silva@ifal.edu.br
+sigaa: https://sigaa.ifal.edu.br
 ativo: true
-foto: nome_do_professor.jpg
+foto: ricardo_silva.jpg
 ---
+
+(CONTEÚDO UTILIZANDO MARKDOWN)
+
+### Área de Atuação
+- Engenharia de Software
+- Arquitetura de Sistemas
+
+### Biografia
+Professor com experiência em desenvolvimento web e sistemas distribuídos.
 ```
 
 #### Passo a Passo
@@ -205,6 +201,12 @@ professor: [nome_professor]
 diasAula:
 - 2N1234
 ---
+
+(CONTEÚDO UTILIZANDO MARKDOWN)
+
+### Ementa
+...
+
 ```
 
 #### Passo a Passo
@@ -239,6 +241,9 @@ local: Local do Evento
 foto: nome_da_imagem.png
 tags: [tag1, tag2]
 ---
+
+DESCRIÇÃO DO EVENTO / PROGRAMAÇÃO (CONTEÚDO UTILIZANDO MARKDOWN)
+
 ```
 
 #### Passo a Passo
@@ -274,6 +279,9 @@ autoria: [Nome do Autor]
 foto: nome_da_imagem.webp
 descricao: Breve descrição do guia.
 ---
+
+CONTEÚDO DO GUIA UTILIZANDO MARKDOWN...
+
 ```
 
 #### Passo a Passo
@@ -311,6 +319,9 @@ integrantes: [Integrante 1, Integrante 2]
 dataInicio: 2026-02-01
 dataTermino: 2026-06-30
 ---
+
+DESCRIÇÃO DO PROJETO UTILIZANDO MARKDOWN
+
 ```
 
 #### Passo a Passo
@@ -346,6 +357,9 @@ palavrasChave: [Palavra1, Palavra2]
 arquivo: nome_do_arquivo.pdf
 publicadoEm: 2026-01-20
 ---
+
+INFORMAÇÕES SOBRE O TCC UTILIZANDO MARKDOWN
+
 ```
 
 #### Passo a Passo
