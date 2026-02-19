@@ -26,7 +26,7 @@ interface Professor {
             {
                 professores.map((professor: Professor) => (
                     <CartaoProfessor 
-                        slug={professor.slug}
+                        href={`professores/${professor.slug}`}
                         nome={professor.data.nome}
                         email={professor.data.email}
                         sitePessoal={professor.data.sitePessoal}

@@ -34,7 +34,9 @@ const generateCumulativePath = (parts: string[], index: number) => {
                             title="Ir para a página inicial"
                         >
                             <Fragment set:html={home} aria-hidden="true" />
-                            Home
+                            <span class="ml-2">
+                                Home
+                            </span>
                         </a>
                     </li>
 
@@ -44,7 +46,7 @@ const generateCumulativePath = (parts: string[], index: number) => {
                             return (
                                 <li class="flex-shrink-0 truncate">
                                     <div class="flex items-center">
-                                        <Fragment set:html={indicador} aria-hidden="true" />
+                                        <p class="text-gray-500 dark:text-gray-400"><Fragment set:html={indicador} aria-hidden="true"/></p>
                                         {index === urlParts.length - 1 ? (
                                             <span class="max-w-xs ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400 text-nowrap truncate">
                                                 {title}

@@ -124,7 +124,7 @@ const noticiasOrdenadas = noticias.sort((a, b) => {
             (professor, index) =>
               index < 8 && (
                 <CartaoProfessor
-                  slug={professor.slug}
+                  href={`professores/${professor.slug}`}
                   nome={professor.data.nome}
                   email={professor.data.email}
                   sitePessoal={professor.data.sitePessoal}

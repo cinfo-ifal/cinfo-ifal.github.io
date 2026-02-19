@@ -7,7 +7,7 @@ import LinkCartaoProfessor from "./link-cartao-professor.astro";
 import Link from "./link.astro";
 
 interface Props {
-    slug: string;
+    href: string;
     nome: string;
     foto: string;
     email: string;
@@ -15,7 +15,7 @@ interface Props {
     curriculoLattes: string;
 }
 
-const { slug, nome, foto, email, sitePessoal, curriculoLattes } = Astro.props;
+const { href, nome, foto, email, sitePessoal, curriculoLattes } = Astro.props;
 ---
 
 <li class="w-full">
@@ -32,7 +32,7 @@ const { slug, nome, foto, email, sitePessoal, curriculoLattes } = Astro.props;
                 class="pb-1 pt-2 text-xl text-center font-semibold text-gray-800 dark:text-white hover:underline line-clamp-1"
             >
                 <Link
-                    href={`professores/${slug}`}
+                    href={`/${href}`}
                     titulo={`Ir para página com mais detalhes do professor(a) ${nome}`}
                     conteudo={nome}
                 />
