@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
-import { dataParaLocalString } from "../../../servicos/utils";
+import { dataIso, dataParaLocalString } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";	
 
 export async function getStaticPaths() {
@@ -37,24 +37,24 @@ const { Content } = await projeto.render();
             class="mb-6 p-4 text-gray-800 dark:text-gray-300 border-y border-gray-300 dark:border-gray-700"
         >
             <p class="text-gray-600 dark:text-gray-400 text-center text-lg">
-                <span class="text-gray-800 dark:text-gray-200 font-medium">Por: </span>
+                <span class="text-gray-800 dark:text-gray-200 font-medium">Integrantes: </span>
                 {projeto.data.integrantes?.join(", ")}
             </p>
 
             <p class="text-gray-600 dark:text-gray-400 text-center text-lg">
-                <span class="text-gray-800 dark:text-gray-200 font-medium">Orientação de: </span>
+                <span class="text-gray-800 dark:text-gray-200 font-medium">Coordenação: </span>
                 {projeto.data.coordenador}
             </p>
 
             <p class="mb-3 flex gap-2 justify-center">
-                <time datetime={projeto.data.dataInicio} class="flex gap-2 items-center">
+                <time datetime={dataIso(projeto.data.dataInicio, false)} class="flex gap-2 items-center">
                     <Fragment set:html={calendario} />
-                    {dataParaLocalString(projeto.data.dataInicio)}
+                    {dataParaLocalString(projeto.data.dataInicio, false)}
                 </time> -
                 {
                     projeto.data.dataTermino && (
-                        <time datetime={projeto.data.dataTermino}>
-                            {dataParaLocalString(projeto.data.dataTermino)}
+                        <time datetime={dataIso(projeto.data.dataTermino, false)}>
+                            {dataParaLocalString(projeto.data.dataTermino, false)}
                         </time>
                     )
                 }

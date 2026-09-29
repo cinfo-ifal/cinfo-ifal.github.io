@@ -4,7 +4,7 @@ cargaHoraria: 40
 curso: sistemas_de_informacao
 natureza: Obrigatória
 modalidade: Presencial
-preRequisitos: PPAP131
+preRequisitos: ppap131
 periodo: 8
 professor: [monica_ximenes_carneiro_da_cunha]
 diasAula:

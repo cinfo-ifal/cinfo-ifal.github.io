@@ -153,7 +153,6 @@ const cursos = await getCollection("cursos");
     BOTAO_MENU.addEventListener("click", lidar_evento_click_botao_menu);
 
     window.addEventListener("click", function (event) {
-        console.log(event.target);
         const igual_botao_menu = event.target === BOTAO_MENU;
         const igual_barra_navegacao_ou_fillho = BARRA_NAVEGACAO.contains(event.target as Node);
         if (!igual_botao_menu && !igual_barra_navegacao_ou_fillho)

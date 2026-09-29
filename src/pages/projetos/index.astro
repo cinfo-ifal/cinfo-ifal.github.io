@@ -1,7 +1,43 @@
 ---
+import { getCollection } from "astro:content";
 import LayoutPage from "../../layouts/layout-page.astro";
+import Container from "../../components/container.astro";
+import ListaSecoes from "../../components/lista-secoes.astro";
+
+const projetos = await getCollection("projetos");
+const tccs = await getCollection("tccs");
+const quantidadePorTipo = (tipo: string) => projetos.filter((projeto) => projeto.data.tipo === tipo).length;
+
+const secoes = [
+    {
+        titulo: "Projetos de Ensino",
+        descricao: "Iniciativas que apoiam e ampliam o aprendizado nos cursos.",
+        href: "/projetos/projetos-ensino",
+        quantidade: quantidadePorTipo("ensino"),
+    },
+    {
+        titulo: "Projetos de Pesquisa",
+        descricao: "Pesquisas aplicadas desenvolvidas por professores e estudantes.",
+        href: "/projetos/projetos-pesquisa",
+        quantidade: quantidadePorTipo("pesquisa"),
+    },
+    {
+        titulo: "Projetos de Extensão",
+        descricao: "Ações que levam o conhecimento produzido à comunidade.",
+        href: "/projetos/projetos-extensao",
+        quantidade: quantidadePorTipo("extensao"),
+    },
+    {
+        titulo: "TCCs",
+        descricao: "Trabalhos de conclusão de curso.",
+        href: "/projetos/tccs",
+        quantidade: tccs.length,
+    },
+];
 ---
 
 <LayoutPage title="Projetos">
-
+    <Container>
+        <ListaSecoes secoes={secoes} />
+    </Container>
 </LayoutPage>

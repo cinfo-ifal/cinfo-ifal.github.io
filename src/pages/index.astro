@@ -6,16 +6,10 @@ import CartaoProfessor from "../components/cartao-professor.astro";
 import CartaoNoticiaPrincipal from "../components/cartao-noticia-principal.astro";
 import CartaoNoticia from "../components/cartao-noticia.astro";
 import setaParaDireita from "../assets/seta-para-direita.svg?raw";
-import type { Noticia } from "../types/noticia";
-import type { Professor } from "../types/professor";
 
-const professores: Professor[] = await getCollection("professores");
-const noticias: Noticia[] = await getCollection("noticias")
-const noticiasOrdenadas = noticias.sort((a, b) => {
-  const dataA = new Date(a.data.publicadoEm);
-  const dataB = new Date(b.data.publicadoEm);
-  return dataB.getTime() - dataA.getTime();
-});
+const professores = await getCollection("professores", ({ data }) => data.ativo);
+const noticias = await getCollection("noticias");
+const noticiasOrdenadas = noticias.sort((a, b) => b.data.publicadoEm.getTime() - a.data.publicadoEm.getTime());
 ---
 
 <LayoutPrincipal title="CINFO | Coordenação de Informática IFAL">
@@ -77,7 +71,7 @@ const noticiasOrdenadas = noticias.sort((a, b) => {
       >
         {
           noticiasOrdenadas.map(
-            (noticia: Noticia, index: number) =>
+            (noticia, index) =>
               index < 4 &&
               (index === 0 ? (
                 <li class="col-span-1 md:row-span-3">

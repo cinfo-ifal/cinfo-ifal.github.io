@@ -3,9 +3,9 @@ import { getCollection } from "astro:content";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
 import CartaoNoticiaPrincipal from "../../../components/cartao-noticia-principal.astro";
-import type { Noticia } from "../../../types/noticia";
 
-const noticias: Noticia[] = await getCollection("noticias");
+
+const noticias = await getCollection("noticias");
 const noticiasOrdenadas = noticias.sort((a, b) => {
   const dataA = new Date(a.data.publicadoEm);
   const dataB = new Date(b.data.publicadoEm);

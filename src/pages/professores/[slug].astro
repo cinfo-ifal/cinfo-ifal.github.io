@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 const { professor } = Astro.props;
 const { Content } = await professor.render();
 const disciplinas = await getCollection("disciplinas", ({ data }) =>
-    data.professor?.includes(professor.slug)
+    data.professor.some((referencia) => referencia.slug === professor.slug)
 );
 ---
 
@@ -47,24 +47,45 @@ const disciplinas = await getCollection("disciplinas", ({ data }) =>
                                     conteudo={professor.data.email}
                                 />
                             </li>
-                            <li>
-                                <strong class="text-gray-800 dark:text-white"
-                                    >Site Pessoal:
-                                </strong>
-                                <Link
-                                    href={`mailto:${professor.data.sitePessoal}`}
-                                    titulo={`Link para o site pessoal do professor ${professor.data.nome}`}
-                                    conteudo={professor.data.sitePessoal}
-                                />
-                            </li>
-                            <li>
-                                <strong class="text-gray-800 dark:text-white">Lattes: </strong>
-                                <Link
-                                    href={`mailto:${professor.data.curriculoLattes}`}
-                                    titulo={`Link para o currículo lattes do professor ${professor.data.nome}`}
-                                    conteudo={professor.data.curriculoLattes}
-                                />
-                            </li>
+                            {
+                                professor.data.sitePessoal && (
+                                    <li>
+                                        <strong class="text-gray-800 dark:text-white">Site Pessoal: </strong>
+                                        <Link
+                                            href={professor.data.sitePessoal}
+                                            target="_blank"
+                                            titulo={`Link para o site pessoal do professor ${professor.data.nome}`}
+                                            conteudo={professor.data.sitePessoal}
+                                        />
+                                    </li>
+                                )
+                            }
+                            {
+                                professor.data.curriculoLattes && (
+                                    <li>
+                                        <strong class="text-gray-800 dark:text-white">Lattes: </strong>
+                                        <Link
+                                            href={professor.data.curriculoLattes}
+                                            target="_blank"
+                                            titulo={`Link para o currículo lattes do professor ${professor.data.nome}`}
+                                            conteudo={professor.data.curriculoLattes}
+                                        />
+                                    </li>
+                                )
+                            }
+                            {
+                                professor.data.sigaa && (
+                                    <li>
+                                        <strong class="text-gray-800 dark:text-white">SIGAA: </strong>
+                                        <Link
+                                            href={professor.data.sigaa}
+                                            target="_blank"
+                                            titulo={`Página do professor ${professor.data.nome} no SIGAA`}
+                                            conteudo="Produção no SIGAA"
+                                        />
+                                    </li>
+                                )
+                            }
                         </ul>
                     </div>
                 </div>

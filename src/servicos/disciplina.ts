@@ -6,9 +6,9 @@ export interface Disciplina {
     curso: string;
     natureza: string;
     modalidade: string;
-    preRequisitos: string;
+    preRequisitos?: string;
     periodo: number;
-    professor: string;
+    professor: string[];
     codigo: string;
     diasAula: string[];
 }
@@ -19,19 +19,19 @@ export interface DisciplinaPorPeriodo {
 }
 
 export async function pegarDisciplinasPorCurso(slugCurso: string): Promise<Disciplina[]> {
-    const disciplinas = await getCollection("disciplinas", ({ data }) => data.curso === slugCurso);
+    const disciplinas = await getCollection("disciplinas", ({ data }) => data.curso.slug === slugCurso);
     return disciplinas.map((disciplina) => {
         return {
             titulo: disciplina.data.titulo,
             cargaHoraria: disciplina.data.cargaHoraria,
-            curso: disciplina.data.curso,
+            curso: disciplina.data.curso.slug,
             natureza: disciplina.data.natureza,
             modalidade: disciplina.data.modalidade,
-            preRequisitos: disciplina.data.preRequisitos,
+            preRequisitos: disciplina.data.preRequisitos?.slug,
             periodo: disciplina.data.periodo,
-            professor: disciplina.data.professor,
+            professor: disciplina.data.professor.map((professor) => professor.slug),
             codigo: disciplina.slug,
-            diasAula: disciplina.data.diasAula,
+            diasAula: disciplina.data.diasAula ?? [],
         };
     });
 }

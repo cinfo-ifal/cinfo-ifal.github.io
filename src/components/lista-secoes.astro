@@ -1,0 +1,35 @@
+---
+// Lista de subseções usada nas páginas-índice (/publicacoes, /projetos), que a trilha de navegação linka.
+interface Secao {
+    titulo: string;
+    descricao: string;
+    href: string;
+    quantidade: number;
+}
+
+interface Props {
+    secoes: Secao[];
+}
+
+const { secoes } = Astro.props;
+---
+
+<ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {
+        secoes.map((secao) => (
+            <li>
+                <a
+                    href={secao.href}
+                    title={`Ir para ${secao.titulo}`}
+                    class="h-full p-6 flex flex-col gap-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg shadow"
+                >
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white">{secao.titulo}</h2>
+                    <p class="text-gray-700 dark:text-gray-400">{secao.descricao}</p>
+                    <small class="mt-auto text-gray-600 dark:text-gray-400">
+                        {secao.quantidade} {secao.quantidade === 1 ? "publicação" : "publicações"}
+                    </small>
+                </a>
+            </li>
+        ))
+    }
+</ul>

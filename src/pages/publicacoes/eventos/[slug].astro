@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
-import { dataParaLocalString } from "../../../servicos/utils";
+import { dataIso, dataParaLocalString } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";
 
 export async function getStaticPaths() {
@@ -37,13 +37,13 @@ const { Content } = await evento.render();
             class="mb-6 p-4 text-gray-800 dark:text-gray-300 border-y border-gray-300 dark:border-gray-700"
         >
             <p class="mb-3 flex gap-2 justify-center">
-                <time datetime={evento.data.dataInicio} class="flex gap-2 items-center">
+                <time datetime={dataIso(evento.data.dataInicio)} class="flex gap-2 items-center">
                     <Fragment set:html={calendario} />
                     {dataParaLocalString(evento.data.dataInicio)}
                 </time> -
                 {
                     evento.data.dataFim && (
-                        <time datetime={evento.data.dataFim}>
+                        <time datetime={dataIso(evento.data.dataFim)}>
                             {dataParaLocalString(evento.data.dataFim)}
                         </time>
                     )

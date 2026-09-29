@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import LayoutPage from "../../layouts/layout-page.astro";
+import Container from "../../components/container.astro";
+import ListaSecoes from "../../components/lista-secoes.astro";
+
+const [noticias, eventos, guias] = await Promise.all([
+    getCollection("noticias"),
+    getCollection("eventos"),
+    getCollection("guias"),
+]);
+
+const secoes = [
+    {
+        titulo: "Notícias",
+        descricao: "Comunicados, editais e novidades da coordenação.",
+        href: "/publicacoes/noticias",
+        quantidade: noticias.length,
+    },
+    {
+        titulo: "Eventos",
+        descricao: "Palestras, semanas acadêmicas e outros eventos.",
+        href: "/publicacoes/eventos",
+        quantidade: eventos.length,
+    },
+    {
+        titulo: "Guias",
+        descricao: "Materiais de apoio e tutoriais.",
+        href: "/publicacoes/guias",
+        quantidade: guias.length,
+    },
+];
+---
+
+<LayoutPage title="Publicações">
+    <Container>
+        <ListaSecoes secoes={secoes} />
+    </Container>
+</LayoutPage>

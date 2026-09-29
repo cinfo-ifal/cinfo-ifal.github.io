@@ -21,12 +21,9 @@ export async function getStaticPaths() {
 
 const { disciplina } = Astro.props;
 const { Content } = await disciplina.render();
-const professorPromise = disciplina.data.professor?.map((professor: any) =>
-    getEntry("professores", professor)
-);
-const professores = await Promise?.all(professorPromise);
-const curso = await getEntry("cursos", disciplina.data.curso);
-const preRequisito = await getEntry("disciplinas", disciplina.data.preRequisitos);
+const professores = await Promise.all(disciplina.data.professor.map((professor) => getEntry(professor)));
+const curso = await getEntry(disciplina.data.curso);
+const preRequisito = disciplina.data.preRequisitos && (await getEntry(disciplina.data.preRequisitos));
 ---
 
 <LayoutPage title={disciplina.data.titulo}>

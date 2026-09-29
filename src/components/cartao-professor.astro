@@ -11,8 +11,8 @@ interface Props {
     nome: string;
     foto: string;
     email: string;
-    sitePessoal: string;
-    curriculoLattes: string;
+    sitePessoal?: string;
+    curriculoLattes?: string;
 }
 
 const { href, nome, foto, email, sitePessoal, curriculoLattes } = Astro.props;
@@ -39,15 +39,15 @@ const { href, nome, foto, email, sitePessoal, curriculoLattes } = Astro.props;
             </h3>
 
             <ul class="flex justify-center gap-1">
-                <LinkCartaoProfessor href={"mailto:" + email} nome={nome}>
+                <LinkCartaoProfessor href={"mailto:" + email} titulo={`Enviar e-mail para o professor(a) ${nome}`}>
                     <span class="sr-only">Email</span>
                     <Fragment set:html={emailSvg} />
                 </LinkCartaoProfessor>
-                <LinkCartaoProfessor href={sitePessoal} nome={nome}>
+                <LinkCartaoProfessor href={sitePessoal} titulo={`Site pessoal do professor(a) ${nome}`}>
                     <span class="sr-only">Site Pessoal</span>
                     <Fragment set:html={web} />
                 </LinkCartaoProfessor>
-                <LinkCartaoProfessor href={curriculoLattes} nome={nome}>
+                <LinkCartaoProfessor href={curriculoLattes} titulo={`Currículo Lattes do professor(a) ${nome}`}>
                     <span class="sr-only">Currículo Lattes</span>
                     <Fragment set:html={curriculo} />
                 </LinkCartaoProfessor>

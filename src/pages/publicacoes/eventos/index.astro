@@ -2,16 +2,11 @@
 import { getCollection } from "astro:content";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
-import { dataParaLocalString } from "../../../servicos/utils";
+import { dataIso, dataParaLocalString, textoSemMarkdown } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";
-import type { Evento } from "../../../types/evento";
 
-const eventos: Evento[] = await getCollection("eventos");
-const eventosOrdenados = eventos.sort((a, b) => {
-    const dataA = new Date(a.data.dataInicio);
-    const dataB = new Date(b.data.dataInicio);
-    return dataB.getTime() - dataA.getTime();
-});
+const eventos = await getCollection("eventos");
+const eventosOrdenados = eventos.sort((a, b) => b.data.dataInicio.getTime() - a.data.dataInicio.getTime());
 ---
 
 <LayoutPage title="Eventos">
@@ -26,13 +21,13 @@ const eventosOrdenados = eventos.sort((a, b) => {
                         <p class="mb-2 text-gray-600 dark:text-gray-400 flex gap-2 items-center">
                             <Fragment set:html={calendario} />
                             <small>
-                                <time datetime={evento.data.dataInicio}>
+                                <time datetime={dataIso(evento.data.dataInicio)}>
                                     {dataParaLocalString(evento.data.dataInicio)}
                                 </time>
                             </small>
                         </p>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">
-                            {evento.body}
+                            {evento.data.descricao ?? textoSemMarkdown(evento.body)}
                         </p>
                         <a
                             href={`/publicacoes/eventos/${evento.slug}`}

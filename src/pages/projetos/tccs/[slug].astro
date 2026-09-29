@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
-import { dataParaLocalString } from "../../../servicos/utils";
+import { dataIso, dataParaLocalString } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";
 
 export async function getStaticPaths() {
@@ -44,8 +44,8 @@ const { Content } = await tcc.render();
                 <span class="text-gray-800 dark:text-gray-200">
                     <Fragment set:html={calendario} />
                 </span>
-                <time datetime={tcc.data.publicadoEm}>
-                    {dataParaLocalString(tcc.data.publicadoEm)}
+                <time datetime={dataIso(tcc.data.publicadoEm, false)}>
+                    {dataParaLocalString(tcc.data.publicadoEm, false)}
                 </time>
             </p>
 

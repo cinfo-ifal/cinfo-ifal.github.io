@@ -2,9 +2,9 @@
 titulo: IFAL inicia novo ciclo de exames periódicos com servidores da instituição
 publicadoEm: 2024-09-01 08:00:00
 modificadoEm: 2024-09-05 16:00:00
-tags: [exames periódicos, servidores, saúde]
+tags: [exames_periodicos, servidores, saúde]
 autoria: [Jhonathan Pino]
-foto: ifal_inicia_novo_ciclo_de_exames_periódicos_com_servidores_da_instituicao.jpeg
+foto: ifal_inicia_novo_ciclo_de_exames_periodicos_com_servidores_da_instituicao.jpeg
 descricao: Docentes e técnicos serão convocados pelo SouGov para realização de procedimento.
 ---
 

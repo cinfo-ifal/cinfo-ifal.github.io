@@ -23,9 +23,7 @@ export async function getStaticPaths() {
 const { curso } = Astro.props;
 const { Content } = await curso.render();
 
-const coordenador = await getEntry("professores", curso.data.coordenador);
-
-console.log(curso.data.titulo);
+const coordenador = await getEntry(curso.data.coordenador);
 ---
 
 <LayoutPage title={curso.data.titulo}>

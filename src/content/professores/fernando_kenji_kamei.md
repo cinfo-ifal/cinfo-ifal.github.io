@@ -6,9 +6,6 @@ email: fernando.kenji@ifal.edu.br
 sigaa: https://sigaa.ifal.edu.br/sigaa/public/docente/producao.jsf?siape=1897878
 ativo: true
 foto: fernando_kenji_kamei.jpg
-disciplinas: 
-- alpg101
-- proo119
 ---
 
 ### Área de Atuação

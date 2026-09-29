@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Container from "../../../components/container.astro";
 import LayoutPage from "../../../layouts/layout-page.astro";
-import { dataParaLocalString } from "../../../servicos/utils";
+import { dataIso, dataParaLocalString } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";
 
 const tccs = await getCollection("tccs");
@@ -24,8 +24,8 @@ const tccs = await getCollection("tccs");
                             </h2>
                             <small class="my-3 flex gap-2 items-center text-gray-600 dark:text-gray-400">
                                 <Fragment set:html={calendario} />
-                                <time datetime={tcc.data.publicadoEm}>
-                                    {dataParaLocalString(tcc.data.publicadoEm)}
+                                <time datetime={dataIso(tcc.data.publicadoEm, false)}>
+                                    {dataParaLocalString(tcc.data.publicadoEm, false)}
                                 </time>
                             </small>
                             <div class="mt-5 flex gap-2 flex-wrap">

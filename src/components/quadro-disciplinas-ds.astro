@@ -5,15 +5,6 @@ import { getCollection } from "astro:content";
 const aulas = await getCollection("aulas");
 
 const diasDaSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
-
-interface Aula {
-    disciplina: string;
-    professor: string;
-    turma: string;
-    grupo: string;
-    inicio: string;
-    termino: string;
-}
 ---
 
 <div class="mt-10 flex-col">
@@ -81,15 +72,9 @@ interface Aula {
                             </tr>
                         </thead>
                         <tbody>
-                            {dia.data?.map(async (aula: Aula) => {
-                                const disciplina = await getEntry(
-                                    "disciplinas",
-                                    aula.disciplina
-                                );
-                                const professor = await getEntry(
-                                    "professores",
-                                    aula.professor
-                                );
+                            {dia.data.map(async (aula) => {
+                                const disciplina = await getEntry(aula.disciplina);
+                                const professor = aula.professor && (await getEntry(aula.professor));
 
                                 return (
                                     <tr class="border-b last:border-none border-gray-200 dark:border-gray-700">

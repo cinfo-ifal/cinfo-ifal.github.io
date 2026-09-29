@@ -2,7 +2,7 @@
 titulo: Colab abre seleção para monitoria
 publicadoEm: 2024-09-10 13:41:00
 modificadoEm: 2024-09-10 13:41:00
-tags: [infraestrutura, ifal_penedo, parlamentar]
+tags: [monitoria, colab, seleção, bolsa]
 autoria: [Lidiane Neves]
 foto: colab_abre_selecao_para_monitoria.jpeg
 descricao: Vagas são para turno vespertino ou matutino e bolsa mensal é de R$700,00 (setecentos reais)

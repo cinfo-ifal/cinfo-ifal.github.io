@@ -1,15 +1,15 @@
 ---
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
-import { dataParaLocalString } from "../../../servicos/utils";
+import { dataIso, dataParaLocalString } from "../../../servicos/utils";
 import { getCollection } from "astro:content";
 import calendario from "../../../assets/calendario.svg?raw";
 import atualizar from "../../../assets/atualizar.svg?raw";
 
 export async function getStaticPaths() {
-    const professores = await getCollection("noticias");
+    const noticias = await getCollection("noticias");
     return (
-        professores.map((noticia) => ({
+        noticias.map((noticia) => ({
             params: {
                 slug: noticia.slug,
             },
@@ -37,14 +37,14 @@ const { Content } = await noticia.render();
             class="mb-6 p-4 text-gray-800 dark:text-gray-300 border-y border-gray-300 dark:border-gray-700"
         >
             <p class="mb-1 flex gap-2 justify-center">
-                <time datetime={noticia.data.publicadoEm} class="flex gap-2 items-center">
+                <time datetime={dataIso(noticia.data.publicadoEm)} class="flex gap-2 items-center">
                     <Fragment set:html={calendario} />
                     {dataParaLocalString(noticia.data.publicadoEm)}
                 </time>
 
                 {
                     noticia.data.modificadoEm && (
-                        <time datetime={noticia.data.modificadoEm} class="flex gap-2 items-center">
+                        <time datetime={dataIso(noticia.data.modificadoEm)} class="flex gap-2 items-center">
                             {"-"}
                             <Fragment set:html={atualizar} />
                             {dataParaLocalString(noticia.data.modificadoEm)}
@@ -53,7 +53,7 @@ const { Content } = await noticia.render();
                 }
             </p>
             <p class="mb-3 text-center">
-                Escrita por <strong>{noticia.data.autoria}</strong>
+                Escrita por <strong>{noticia.data.autoria.join(", ")}</strong>
             </p>
             {
                 noticia.data.tags.length > 0 && (
