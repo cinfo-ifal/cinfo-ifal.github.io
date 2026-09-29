@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import LayoutPage from "../../../layouts/layout-page.astro";
+import Container from "../../../components/container.astro";
+import CartaoNoticiaPrincipal from "../../../components/cartao-noticia-principal.astro";
+import Paginacao from "../../../components/paginacao.astro";
+import { ITENS_POR_PAGINA, publicados } from "../../../servicos/publicacoes";
+
+// Página 1 em /publicacoes/noticias; as seguintes em /publicacoes/noticias/2, /3…
+export const getStaticPaths = (async ({ paginate }) => {
+    const noticias = await publicados("noticias");
+    noticias.sort((a, b) => b.data.publicadoEm.getTime() - a.data.publicadoEm.getTime());
+    return paginate(noticias, { pageSize: ITENS_POR_PAGINA.noticias });
+}) satisfies GetStaticPaths;
+
+interface Props {
+    page: Page<CollectionEntry<"noticias">>;
+}
+
+const { page } = Astro.props;
+const titulo = page.currentPage === 1 ? "Notícias" : `Notícias (página ${page.currentPage})`;
+---
+
+<LayoutPage title={titulo}>
+    <Container>
+        <ul class="grid md:grid-cols-3 gap-5">
+            {
+                page.data.map((noticia) => (
+                    <CartaoNoticiaPrincipal
+                        slug={noticia.slug}
+                        descricao={noticia.data.descricao}
+                        foto={noticia.data.foto}
+                        titulo={noticia.data.titulo}
+                    />
+                ))
+            }
+        </ul>
+        <Paginacao pagina={page} base="/publicacoes/noticias" />
+    </Container>
+</LayoutPage>

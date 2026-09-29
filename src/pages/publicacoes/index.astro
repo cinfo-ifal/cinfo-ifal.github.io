@@ -1,13 +1,13 @@
 ---
-import { getCollection } from "astro:content";
+import { publicados } from "../../servicos/publicacoes";
 import LayoutPage from "../../layouts/layout-page.astro";
 import Container from "../../components/container.astro";
 import ListaSecoes from "../../components/lista-secoes.astro";
 
 const [noticias, eventos, guias] = await Promise.all([
-    getCollection("noticias"),
-    getCollection("eventos"),
-    getCollection("guias"),
+    publicados("noticias"),
+    publicados("eventos"),
+    publicados("guias"),
 ]);
 
 const secoes = [

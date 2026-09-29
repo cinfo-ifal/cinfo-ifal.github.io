@@ -1,11 +1,9 @@
 ---
-import { getCollection } from "astro:content";
+import { publicados } from "../../../servicos/publicacoes";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
 
-const projetosEnsino = await getCollection("projetos", ({ data }) => {
-    return data.tipo === "ensino";
-});
+const projetosEnsino = (await publicados("projetos")).filter(({ data }) => data.tipo === "ensino");
 
 ---
 

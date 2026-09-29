@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+  # Rebuild diário (06:00 em Maceió) para mover eventos encerrados de "Próximos" para "Realizados".
+  schedule:
+    - cron: "0 9 * * *"
 
 permissions:
   contents: read

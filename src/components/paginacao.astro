@@ -1,0 +1,54 @@
+---
+import type { Page } from "astro";
+
+// Navegação entre as páginas geradas por paginate() (ver publicacoes/noticias/[...pagina].astro).
+interface Props {
+    pagina: Page<unknown>;
+    // URL da primeira página, que não leva número (ex.: "/publicacoes/noticias").
+    base: string;
+}
+
+const { pagina, base } = Astro.props;
+const urlDaPagina = (numero: number) => (numero === 1 ? base : `${base}/${numero}`);
+const numeros = Array.from({ length: pagina.lastPage }, (_, i) => i + 1);
+const classeLink =
+    "px-3 py-2 leading-tight text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white";
+const classeAtual =
+    "px-3 py-2 leading-tight text-white bg-blue-700 border border-blue-700 rounded-lg dark:bg-blue-600 dark:border-blue-600";
+---
+
+{
+    pagina.lastPage > 1 && (
+        <nav class="mt-10 flex justify-center" aria-label="Paginação">
+            <ul class="inline-flex flex-wrap justify-center gap-2 text-sm">
+                {pagina.url.prev && (
+                    <li>
+                        <a href={pagina.url.prev} class={classeLink} rel="prev">
+                            Anterior
+                        </a>
+                    </li>
+                )}
+                {numeros.map((numero) => (
+                    <li>
+                        {numero === pagina.currentPage ? (
+                            <span class={classeAtual} aria-current="page">
+                                {numero}
+                            </span>
+                        ) : (
+                            <a href={urlDaPagina(numero)} class={classeLink} title={`Ir para a página ${numero}`}>
+                                {numero}
+                            </a>
+                        )}
+                    </li>
+                ))}
+                {pagina.url.next && (
+                    <li>
+                        <a href={pagina.url.next} class={classeLink} rel="next">
+                            Próxima
+                        </a>
+                    </li>
+                )}
+            </ul>
+        </nav>
+    )
+}

@@ -71,13 +71,16 @@ npm install
 
 ## 📝 Gerenciamento de Conteúdo
 
+> O passo a passo completo está no **Manual de Publicação**, publicado no próprio site em [`/publicacoes/guias/manual_site_cinfo`](https://cinfo-ifal.github.io/publicacoes/guias/manual_site_cinfo) (arquivo `src/content/guias/manual_site_cinfo.md`). Ao mudar campos ou regras de conteúdo, atualize o manual junto.
+
 Cada publicação é um arquivo `.md` em `src/content/<tipo>/`. O **nome do arquivo** (minúsculas, sem acentos nem espaços, palavras separadas por `_`) vira a URL. O frontmatter é **validado no build** (`src/content/config.ts`): campo faltando, data inválida ou referência a professor/disciplina inexistente faz o build falhar, com mensagem indicando o arquivo e o campo.
 
 Regras gerais:
 - `foto` e `arquivo` levam **só o nome do arquivo**, que deve estar em `public/images/<tipo>/` (ou `public/pdfs/tccs/`).
 - Referências a professores, cursos e disciplinas usam o **slug** (nome do arquivo sem `.md`).
 - Datas no horário de Maceió: `AAAA-MM-DD HH:MM:SS` ou `AAAA-MM-DD HH:MM`; só a data em projetos e TCCs.
-- Para deixar um rascunho no repositório sem publicar, comece o nome do arquivo com `_`.
+- Para deixar um rascunho no repositório sem publicar: `rascunho: true` no frontmatter (notícias, eventos, guias, projetos e TCCs; aparece só no `npm run dev`) ou nome do arquivo começando com `_` (ignorado sempre).
+- Notícias são paginadas de 12 em 12 e eventos realizados de 9 em 9 (`src/servicos/publicacoes.ts`). Eventos com `dataFim` futura aparecem em "Próximos eventos", também na página inicial; o deploy roda diariamente para atualizar essa separação.
 
 ### Notícia — `src/content/noticias/`
 

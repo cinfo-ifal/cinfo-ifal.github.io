@@ -20,6 +20,10 @@ const referenciaOpcional = <C extends "disciplinas" | "professores">(colecao: C)
         reference(colecao).optional()
     );
 
+// "rascunho: true" esconde a entrada do site publicado; ela continua visível no `npm run dev`
+// (ver servicos/publicacoes.ts). Aceito em notícias, eventos, guias, projetos e TCCs.
+const rascunho = z.boolean().default(false);
+
 const ColecaoNoticias = defineCollection({
     type: "content",
     schema: z.object({
@@ -30,6 +34,7 @@ const ColecaoNoticias = defineCollection({
         autoria: z.array(z.string()),
         foto: z.string(),
         descricao: z.string(),
+        rascunho,
     }),
 });
 
@@ -90,6 +95,7 @@ const ColecaoEventos = defineCollection({
         foto: z.string(),
         tags: z.array(z.string()),
         descricao: z.string().optional(),
+        rascunho,
     }),
 });
 
@@ -103,6 +109,7 @@ const ColecaoGuias = defineCollection({
         autoria: z.array(z.string()),
         foto: z.string(),
         descricao: z.string(),
+        rascunho,
     }),
 });
 
@@ -115,6 +122,7 @@ const ColecaoTcc = defineCollection({
         palavrasChave: z.array(z.string()),
         arquivo: z.string(),
         publicadoEm: data,
+        rascunho,
     }),
 });
 
@@ -129,6 +137,7 @@ const ColecaoProjetos = defineCollection({
         integrantes: z.array(z.string()),
         dataInicio: data,
         dataTermino: data,
+        rascunho,
     }),
 });
 

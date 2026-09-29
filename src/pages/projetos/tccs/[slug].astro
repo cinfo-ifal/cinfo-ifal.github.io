@@ -1,12 +1,12 @@
 ---
-import { getCollection } from "astro:content";
+import { publicados } from "../../../servicos/publicacoes";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
 import { dataIso, dataParaLocalString } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";
 
 export async function getStaticPaths() {
-    const tccs = await getCollection("tccs");
+    const tccs = await publicados("tccs");
     return (
         tccs.map((tcc) => ({
             params: {

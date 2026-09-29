@@ -1,11 +1,11 @@
 ---
-import { getCollection } from "astro:content";
+import { publicados } from "../../servicos/publicacoes";
 import LayoutPage from "../../layouts/layout-page.astro";
 import Container from "../../components/container.astro";
 import ListaSecoes from "../../components/lista-secoes.astro";
 
-const projetos = await getCollection("projetos");
-const tccs = await getCollection("tccs");
+const projetos = await publicados("projetos");
+const tccs = await publicados("tccs");
 const quantidadePorTipo = (tipo: string) => projetos.filter((projeto) => projeto.data.tipo === tipo).length;
 
 const secoes = [
