@@ -10,6 +10,27 @@ const tccs = await publicados("tccs");
 
 <LayoutPage title="TCCs">
     <Container>
+        <section class="max-w-3xl mb-8 p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h2 class="text-gray-800 dark:text-gray-200 text-xl font-medium mb-3">
+                TCCs no REDIFAL
+            </h2>
+            <p class="text-gray-700 dark:text-gray-300">
+                Os Trabalhos de Conclusão de Curso do Ifal são publicados no
+                REDIFAL, o Repositório Institucional Digital do Instituto
+                Federal de Alagoas, que reúne em acesso aberto a produção
+                técnica, científica e cultural da instituição. No repositório,
+                é possível pesquisar os trabalhos por título, autor ou curso.
+            </p>
+            <a
+                class="mt-4 inline-block text-blue-600 dark:text-blue-400 hover:underline"
+                href="https://repositorio.ifal.edu.br/home"
+                target="_blank"
+                rel="noopener"
+                title="Ir para o REDIFAL, Repositório Institucional Digital do Ifal"
+            >
+                Acessar o REDIFAL
+            </a>
+        </section>
         <ul>
             {
                 tccs.map((tcc) => (

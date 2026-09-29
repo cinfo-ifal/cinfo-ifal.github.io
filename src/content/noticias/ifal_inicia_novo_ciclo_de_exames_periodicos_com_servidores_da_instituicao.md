@@ -48,4 +48,4 @@ A iniciativa atende ao Decreto no 6.856, de 25 de maio de 2009, que normatiza os
 
 Para facilitar a compreensão das/os servidoras/es sobre a realização dos EMP, a equipe de Saúde e Segurança do Trabalho da Unidade (CSS) elaborou um e-book com perguntas e respostas direcionadas ao tema. Acesse aqui!
 
-Outras informações podem ser obtidas no [Guia de Procedimento para realização dos Exames Médicos Periódicos](https://www.gov.br/servidor/pt-br/acesso-a-informacao/faq/sou-gov.br/minha-saude-exames-medicos-periodicos/exames-medicos-periodicos). Em caso de dúvidas, também é possível entrar em contato, através do e-mail [examesperiodicos.css@ifal.edu.br](examesperiodicos.css@ifal.edu.br).
+Outras informações podem ser obtidas no [Guia de Procedimento para realização dos Exames Médicos Periódicos](https://www.gov.br/servidor/pt-br/acesso-a-informacao/faq/sou-gov.br/minha-saude-exames-medicos-periodicos/exames-medicos-periodicos). Em caso de dúvidas, também é possível entrar em contato, através do e-mail [examesperiodicos.css@ifal.edu.br](mailto:examesperiodicos.css@ifal.edu.br).

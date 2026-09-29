@@ -3,22 +3,22 @@ export const linksRodape = [
         nomeGrupo: "CINFO",
         links: [
             {
-                href: "informacoes",
+                href: "/informacoes",
                 conteudo: "Informações",
                 titulo: "Ir para a página de informações",
             },
             {
-                href: "professores",
+                href: "/professores",
                 conteudo: "Professores",
-                title: "Ir para a página de professores",
+                titulo: "Ir para a página de professores",
             },
             {
-                href: "cursos/desenvolvimento_de_sistemas",
+                href: "/cursos/desenvolvimento_de_sistemas",
                 conteudo: "Desenvolvimento de Sistemas",
                 titulo: "Ir para a página do curso de Desenvolvimento de Sistemas",
             },
             {
-                href: "cursos/sistemas_de_informacao",
+                href: "/cursos/sistemas_de_informacao",
                 conteudo: "Sistemas de Informação",
                 titulo: "Ir para a página do curso de Sistemas de Informação",
             },
@@ -28,17 +28,17 @@ export const linksRodape = [
         nomeGrupo: "Publicações",
         links: [
             {
-                href: "publicacoes/noticias",
+                href: "/publicacoes/noticias",
                 conteudo: "Notícias",
                 titulo: "Ir para a página de notícias",
             },
             {
-                href: "publicacoes/eventos",
+                href: "/publicacoes/eventos",
                 conteudo: "Eventos",
                 titulo: "Ir para a página de eventos",
             },
             {
-                href: "publicacoes/guias",
+                href: "/publicacoes/guias",
                 conteudo: "Guias",
                 titulo: "Ir para a página de guias",
             },
@@ -48,22 +48,22 @@ export const linksRodape = [
         nomeGrupo: "Projetos",
         links: [
             {
-                href: "projetos/projetos-ensino",
+                href: "/projetos/projetos-ensino",
                 conteudo: "Projetos de Ensino",
                 titulo: "Ir para a página de projetos de ensino",
             },
             {
-                href: "projetos/projetos-pesquisa",
+                href: "/projetos/projetos-pesquisa",
                 conteudo: "Projetos de Pesquisa",
                 titulo: "Ir para a página de projetos de pesquisa",
             },
             {
-                href: "projetos/projetos-extensao",
+                href: "/projetos/projetos-extensao",
                 conteudo: "Projetos de Extensão",
                 titulo: "Ir para a página de projetos de extensão",
             },
             {
-                href: "projetos/tccs",
+                href: "/projetos/tccs",
                 conteudo: "TCCs",
                 titulo: "Ir para a página de TCC",
             },

@@ -21,8 +21,8 @@ Para os servidores que tiverem interesse em participar do congresso, é preciso 
 - Nota de crédito no valor da inscrição, sem desconto, no caso de servidor do campus; 
 - Para servidor da Reitoria, pedir que o gestor da sua Pró-reitoria ou setor indique por e-mail à CDP que irá custear o pagamento da taxa de inscrição.
 
-Essa documentação pode ser enviada para o e-mail [cdp@ifal.edu.br](cdp@ifal.edu.br) ou por meio de processo no SIPAC **até o dia 12 de setembro**, sem prorrogações.
+Essa documentação pode ser enviada para o e-mail [cdp@ifal.edu.br](mailto:cdp@ifal.edu.br) ou por meio de processo no SIPAC **até o dia 12 de setembro**, sem prorrogações.
 
 O Ifal não paga boleto bancário nem faz ressarcimento do pagamento de inscrição feito pelo servidor. A CDP contrata as inscrições por meio de Nota de Empenho e isso significa que deve ser considerado valor da inscrição por empenho ou da data mais próxima ao evento, salvo se houver alguma negociação. O pagamento será efetuado após a participação do servidor no evento, mediante a nota fiscal e certificado de participação.
 
-Por fim, os custos com diárias e passagens são de responsabilidade do campus e/ou setor de lotação do servidor. Para mais informações, solicite pelo e-mail: [cdp@ifal.edu.br](cdp@ifal.edu.br).
+Por fim, os custos com diárias e passagens são de responsabilidade do campus e/ou setor de lotação do servidor. Para mais informações, solicite pelo e-mail: [cdp@ifal.edu.br](mailto:cdp@ifal.edu.br).
