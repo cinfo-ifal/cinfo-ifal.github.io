@@ -6,6 +6,6 @@ natureza: Obrigatória
 modalidade: Presencial
 preRequisitos: Sem pre-requisito
 periodo: 2
-professor: [ricardo_rubens_gomes_nunes_filho, fernando_kenji_kamei]
+professor: [ricardo_nunes, fernando_kenji_kamei]
 ---
 

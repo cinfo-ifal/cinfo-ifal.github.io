@@ -96,7 +96,7 @@
         "termino": "12:20",
         "grupo": "G1",
         "disciplina": "introducao_a_programacao",
-        "professor": "ricardo_rubens_gomes_nunes_filho"
+        "professor": "ricardo_nunes"
     },
     {
         "curso": "desenvolvimento_de_sistemas",
@@ -105,6 +105,6 @@
         "termino": "15:10",
         "grupo": "G1",
         "disciplina": "introducao_a_programacao",
-        "professor": "ricardo_rubens_gomes_nunes_filho"
+        "professor": "ricardo_nunes"
     }
 ]

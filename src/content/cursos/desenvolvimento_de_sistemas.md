@@ -9,7 +9,7 @@ vagas: 36
 telefone: 2126-7043 (ramal)
 foto: desenvolvimento_de_sistemas.png
 email: coord.info.maceio@ifal.edu.br
-coordenador: augusto_cesar_melo_de_oliveira
+coordenador: wladia_bessa_da_cruz
 monitor: "Nome do monitor"
 horariosMonitoria: "16:00 - 18:00"
 ---

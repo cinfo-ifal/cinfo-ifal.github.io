@@ -6,7 +6,7 @@ natureza: Obrigatória
 modalidade: Presencial
 preRequisitos: lnpg109
 periodo: 3
-professor: [ricardo_rubens_gomes_nunes_filho]
+professor: [ricardo_nunes]
 diasAula:
 - 2N12
 - 3N34

@@ -9,7 +9,7 @@ vagas: 80
 telefone: 2126-7027
 foto: sistemas_de_informacao.png
 email: bsi.maceio@ifal.edu.br
-coordenador: jailton_cardoso
+coordenador: monica_ximenes_carneiro_da_cunha
 monitor: "Nome do monitor"
 horariosMonitoria: "16:00 - 18:00"
 ---

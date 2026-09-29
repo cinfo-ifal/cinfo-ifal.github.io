@@ -5,7 +5,7 @@ sitePessoal: https://integra.ifal.edu.br/p/tarcio-rodrigues-bezerra
 email: tarcio@ifal.edu.br
 sigaa: 
 ativo: true
-foto: tarcio.png
+foto: tarcio_rodrigues.png
 ---
 
 ### Área de Atuação

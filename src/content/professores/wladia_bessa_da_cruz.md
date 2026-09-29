@@ -1,5 +1,5 @@
 ---
-nome: Wladia Bessa da Cruz
+nome: Wládia Bessa da Cruz
 curriculoLattes: http://lattes.cnpq.br/9112099478105369
 sitePessoal: 
 email: wladia@ifal.edu.br

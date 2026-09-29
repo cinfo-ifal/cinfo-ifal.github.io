@@ -6,5 +6,5 @@ natureza: Obrigatória
 modalidade: Presencial
 preRequisitos: Sem pre-requisito
 periodo: 1
-professor: [ricardo_rubens_gomes_nunes_filho, augusto_cesar_melo_de_oliveira, fernando_kenji_kamei]
+professor: [ricardo_nunes, augusto_cesar_melo_de_oliveira, fernando_kenji_kamei]
 ---

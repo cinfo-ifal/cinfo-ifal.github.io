@@ -1,11 +1,11 @@
 ---
-nome: Ricardo Rubens Gomes Nunes Filho
+nome: Ricardo R G Nunes Filho
 curriculoLattes: http://lattes.cnpq.br/1760182180822152
 sitePessoal: 
 email: ricardo@ifal.edu.br
 sigaa: 
 ativo: true
-foto: ricardo_rubens_gomes_nunes_filho.jpg
+foto: ricardo_nunes.jpg
 ---
 
 ### Área de Atuação
