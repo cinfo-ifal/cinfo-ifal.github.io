@@ -1,0 +1,61 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import LayoutPage from "../../../layouts/layout-page.astro";
+import Container from "../../../components/container.astro";
+import CartaoEvento from "../../../components/cartao-evento.astro";
+import Paginacao from "../../../components/paginacao.astro";
+import { ITENS_POR_PAGINA, publicados, separarEventos } from "../../../servicos/publicacoes";
+
+// Página 1 em /publicacoes/eventos (próximos + primeiros realizados); as seguintes, só com realizados,
+// em /publicacoes/eventos/2, /3… Os próximos são poucos e não são paginados.
+export const getStaticPaths = (async ({ paginate }) => {
+    const { proximos, realizados } = separarEventos(await publicados("eventos"));
+    return paginate(realizados, { pageSize: ITENS_POR_PAGINA.eventos, props: { proximos } });
+}) satisfies GetStaticPaths;
+
+interface Props {
+    page: Page<CollectionEntry<"eventos">>;
+    proximos: CollectionEntry<"eventos">[];
+}
+
+const { page, proximos } = Astro.props;
+const primeiraPagina = page.currentPage === 1;
+const titulo = primeiraPagina ? "Eventos" : `Eventos realizados (página ${page.currentPage})`;
+const classeGrade = "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3";
+const classeSubtitulo = "mb-6 text-2xl font-semibold text-gray-800 dark:text-white";
+---
+
+<LayoutPage title={titulo}>
+    <Container>
+        {
+            primeiraPagina && (
+                <section class="mb-12">
+                    <h2 class={classeSubtitulo}>Próximos eventos</h2>
+                    {proximos.length > 0 ? (
+                        <ul class={classeGrade}>
+                            {proximos.map((evento) => (
+                                <CartaoEvento evento={evento} />
+                            ))}
+                        </ul>
+                    ) : (
+                        <p class="text-gray-600 dark:text-gray-400">Nenhum evento programado no momento.</p>
+                    )}
+                </section>
+            )
+        }
+        {
+            page.total > 0 && (
+                <section>
+                    {primeiraPagina && <h2 class={classeSubtitulo}>Eventos realizados</h2>}
+                    <ul class={classeGrade}>
+                        {page.data.map((evento) => (
+                            <CartaoEvento evento={evento} />
+                        ))}
+                    </ul>
+                    <Paginacao pagina={page} base="/publicacoes/eventos" />
+                </section>
+            )
+        }
+    </Container>
+</LayoutPage>

@@ -5,11 +5,16 @@ import LayoutPrincipal from "../layouts/layout-principal.astro";
 import CartaoProfessor from "../components/cartao-professor.astro";
 import CartaoNoticiaPrincipal from "../components/cartao-noticia-principal.astro";
 import CartaoNoticia from "../components/cartao-noticia.astro";
+import CartaoEvento from "../components/cartao-evento.astro";
+import { publicados, separarEventos } from "../servicos/publicacoes";
 import setaParaDireita from "../assets/seta-para-direita.svg?raw";
 
 const professores = await getCollection("professores", ({ data }) => data.ativo);
-const noticias = await getCollection("noticias");
+const noticias = await publicados("noticias");
 const noticiasOrdenadas = noticias.sort((a, b) => b.data.publicadoEm.getTime() - a.data.publicadoEm.getTime());
+// A seção de eventos só aparece quando há evento programado (ou em andamento).
+const { proximos } = separarEventos(await publicados("eventos"));
+const proximosEventos = proximos.slice(0, 3);
 ---
 
 <LayoutPrincipal title="CINFO | Coordenação de Informática IFAL">
@@ -97,6 +102,30 @@ const noticiasOrdenadas = noticias.sort((a, b) => b.data.publicadoEm.getTime() -
       </ul>
     </Container>
   </section>
+  {
+    proximosEventos.length > 0 && (
+      <section class="py-10 bg-gray-50 dark:bg-gray-800">
+        <Container>
+          <div class="flex justify-between items-center">
+            <h2 class="text-gray-800 dark:text-white text-2xl">Próximos eventos</h2>
+            <a
+              href="/publicacoes/eventos"
+              class="inline-flex justify-center items-center gap-2 text-base font-medium text-center text-gray-800 dark:text-white hover:underline"
+              title="Ver todos os eventos"
+            >
+              Ver todos
+              <Fragment set:html={setaParaDireita} />
+            </a>
+          </div>
+          <ul class="py-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {proximosEventos.map((evento) => (
+              <CartaoEvento evento={evento} />
+            ))}
+          </ul>
+        </Container>
+      </section>
+    )
+  }
   <section class="py-10 bg-gradient-to-r from-[#2A444E] to-[#629CB4]">
     <Container>
       <div class="flex justify-between items-center">

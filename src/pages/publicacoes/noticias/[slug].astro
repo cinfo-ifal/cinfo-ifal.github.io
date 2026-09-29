@@ -1,13 +1,13 @@
 ---
+import { publicados } from "../../../servicos/publicacoes";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import Container from "../../../components/container.astro";
 import { dataIso, dataParaLocalString } from "../../../servicos/utils";
-import { getCollection } from "astro:content";
 import calendario from "../../../assets/calendario.svg?raw";
 import atualizar from "../../../assets/atualizar.svg?raw";
 
 export async function getStaticPaths() {
-    const noticias = await getCollection("noticias");
+    const noticias = await publicados("noticias");
     return (
         noticias.map((noticia) => ({
             params: {

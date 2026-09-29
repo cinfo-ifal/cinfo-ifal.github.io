@@ -1,11 +1,11 @@
 ---
-import { getCollection } from "astro:content";
+import { publicados } from "../../../servicos/publicacoes";
 import Container from "../../../components/container.astro";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import { dataIso, dataParaLocalString } from "../../../servicos/utils";
 import calendario from "../../../assets/calendario.svg?raw";
 
-const tccs = await getCollection("tccs");
+const tccs = await publicados("tccs");
 ---
 
 <LayoutPage title="TCCs">

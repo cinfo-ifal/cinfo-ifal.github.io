@@ -1,11 +1,11 @@
 ---
-import { getCollection } from "astro:content";
+import { publicados } from "../../../servicos/publicacoes";
 import LayoutPage from "../../../layouts/layout-page.astro";
 import CartaoGuia from "../../../components/cartao-guia.astro";
 import Container from "../../../components/container.astro";
 
 
-const guias = await getCollection("guias");
+const guias = await publicados("guias");
 const sortedGuias = guias.sort((a, b) => {
     const dateA = new Date(a.data.publicadoEm);
     const dateB = new Date(b.data.publicadoEm);
