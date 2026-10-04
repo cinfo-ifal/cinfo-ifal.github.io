@@ -6,7 +6,7 @@ tags: [monitoria, edital, bolsa]
 autoria: [Coordenação CINFO]
 foto: selecao_monitoria_fundamentos_redes_2026.jpg
 descricao: Inscrições para uma vaga remunerada de monitoria em Fundamentos de Redes ocorrem de 5 a 9 de outubro; bolsa mensal é de R$ 400.
-rascunho: true
+rascunho: false
 ---
 
 A Diretoria de Ensino do IFAL Campus Maceió e a Coordenação do Bacharelado em Sistemas de Informação (BSI) abrirão, de 5 a 9 de outubro de 2026, as inscrições para uma vaga remanescente de monitoria remunerada em Fundamentos de Redes de Computadores. A bolsa é de R$ 400 mensais, com carga de 15 horas semanais.
